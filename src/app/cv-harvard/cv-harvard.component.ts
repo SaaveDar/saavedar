@@ -85,7 +85,7 @@ export class CvHarvardComponent {
     },
     {
       cargo: 'ASISTENTE DE BASE DE DATOS',
-      empresa: 'INST. EDUC. SUP. TECN. PUBLICO "LAREDO"',
+      empresa: 'UNIVERSIDAD PRIVADA ANTENOR ORREGO',
       fecha: 'ENERO - ABRIL 2024',
       detalles: [
         'Automatización de monitoreo de JOBS con Python, oracle client y crontab',
