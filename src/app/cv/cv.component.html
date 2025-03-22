@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 <div #cv id="cv" class="cv-container">
     <div class="left-panel">
       <div class="profile">
@@ -13,7 +15,15 @@
       <div class="contact">
         <h3>CONTACTO</h3>
         <p>📞 {{ contacto.telefono }}</p>
-        <p><i class="fab fa-google"></i> {{ contacto.email }}</p>
+        <p>
+          <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" 
+               alt="Gmail" width="11" height="12">
+          {{ contacto.email }}
+        </p>
+        
+        
+        
+        
         <p>🔗 <a href="{{ contacto.linkedin }}" target="_blank" style="color: #0077b5; text-decoration: none;">LinkedIn</a></p>
         <p>📍 {{ contacto.direccion }}</p>
       </div>

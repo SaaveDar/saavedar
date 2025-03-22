@@ -270,3 +270,19 @@ html, body {
     background: #008c9e;
   }
   
+  .cargo-fecha {
+    display: flex;
+    justify-content: space-between; /* Separa el cargo y la fecha */
+    align-items: center; /* Alinea verticalmente */
+    width: 100%; /* Ocupar todo el ancho disponible */
+  }
+  
+  .cargo {
+    font-weight: bold;
+  }
+  
+  .fecha {
+    white-space: nowrap; /* Evita que la fecha se rompa en otra línea */
+    text-align: right;
+  }
+  
