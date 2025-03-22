@@ -1,0 +1,271 @@
+/* Asegura que el body ocupe toda la pantalla y centra con Flexbox */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+/* Contenedor principal (cv-container) */
+#cv {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 900px;
+  width: 100%;
+  height: auto;
+  margin: 30px auto; /* Se agregó margen superior para bajarlo */
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* PANEL IZQUIERDO */
+.left-panel {
+  background-color: rgb(230, 229, 229);
+  color: black;
+  padding: 30px 20px;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Contacto, habilidades y educación */
+.contact h3,
+.skills h3,
+.education h3 {
+  margin-top: 20px;
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.contact p,
+.skills ul,
+.education ul {
+  font-size: 12px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* PANEL DERECHO */
+.right-panel {
+  background-color: white;
+  padding: 15px 20px;
+  width: 65%;
+  margin-top: -30px;
+}
+
+/* Título de experiencia */
+.right-panel h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: left;
+}
+
+/* Cada trabajo */
+.job {
+  margin-bottom: 5px;
+}
+
+.job p {
+  font-size: 12px;
+  margin-bottom: 3px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+/* Cargo y fecha */
+.job p.cargo-fecha {
+  font-size: 14px;
+  margin-bottom: 2px;
+  line-height: 1.1;
+  text-align: left;
+}
+
+/* Detalles */
+.job ul.detalles-ul {
+  list-style-type: square;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.job p.empresa {
+  font-size: 12px;
+  margin-top: 0;
+  margin-bottom: 2px;
+  line-height: 1.1;
+  text-align: left;
+}
+
+/* Lista de detalles */
+.job ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 10px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.job li {
+  margin-bottom: 3px;
+  font-size: 10px;
+  text-align: left;
+}
+
+/* PERFIL */
+.profile {
+  text-align: center;
+}
+
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
+.profile h2 {
+  margin: 5px 0; /* Reduce el espacio arriba y abajo del nombre */
+  font-size: 20px;
+}
+
+.profile p {
+  margin: 2px 0; /* Reduce el espacio entre los párrafos */
+  font-size: 16px;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Botón centrado */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 32px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  button {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  #cv {
+    flex-direction: column;
+    margin-top: 50px; /* Ajuste adicional para pantallas pequeñas */
+  }
+
+  .left-panel, .right-panel {
+    margin-bottom: 10px;
+  }
+}
+
+.Object h3 {
+  margin-top: 20px;
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.Object p {
+  font-size: 13px;
+  text-align: justify; /* Opcional, para mejorar la lectura */
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.navbar {
+  background-color: #333;
+  padding: 10px 0;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul li {
+  margin: 0 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #00bcd4;
+  border-bottom: 2px solid #00bcd4;
+}
+
+.cv-container {
+  display: flex;
+  max-width: 900px;
+  margin: 80px auto 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+h3 {
+  color: #333;
+}
+
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: #00bcd4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #008c9e;
+}

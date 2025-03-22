@@ -1,0 +1,147 @@
+/* cv-harvard.component.css */
+.cv-container {
+    width: 210mm; /* Ancho de una hoja A4 */
+    height: 297mm; /* Alto de una hoja A4 */
+    margin: auto; /* Centrar el contenido */
+    padding: 10mm; /* Espacio interno ajustado para mejor distribución */
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Efecto de sombra para simular hoja */
+    border-radius: 5px; /* Bordes redondeados sutiles */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineación a la izquierda */
+    justify-content: flex-start;
+    font-family: Arial, sans-serif; /* Cambia la fuente a Arial */
+}
+
+body {
+    background: #eaeaea; /* Color de fondo para simular escritorio o papel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.cv-container h2, 
+.cv-container h3, 
+.cv-container p, 
+.cv-container ul {
+  text-align: left;
+  margin-left: 5px; /* Reducción de margen para mejor uso del espacio */
+  color: black; /* Asegurar que el texto sea negro para contraste */
+}
+
+.cv-container ul {
+  padding-left: 20px; /* Ajuste de indentación */
+}
+
+.cv-container ul li {
+  text-align: left;
+}
+
+.cv-container ul {
+    margin-top: 2px; /* Reduce el espacio sobre la lista */
+    margin-bottom: 2px; /* Reduce el espacio debajo de la lista */
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px; /* Reducción del espacio para compactar */
+    margin-bottom: 10px;
+    width: 100%;
+    background: white; /* Eliminando el fondo negro */
+    padding: 10px;
+    color: black; /* Texto en negro */
+}
+
+h1 {
+    font-size: 22px; /* Tamaño reducido para mejor ajuste */
+    font-weight: bold;
+    text-align: center;
+    color: black; /* Asegurar contraste */
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 12px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 3px;
+    color: black;
+}
+
+h3 {
+    font-size: 16px;
+    margin-top: 8px;
+    color: black;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+    color: black;
+}
+
+button {
+    display: block;
+    width: 200px;
+    margin: 12px auto;
+    padding: 8px;
+    background-color: #000000; /* Manteniendo el botón negro */
+    color: #ffffff;
+    border: 1px solid #000;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.cv-container section {
+    padding-bottom: 5px; /* Espaciado ajustado para mejor distribución */
+    margin-bottom: -10px;
+    width: 100%;
+}
+
+.cv-container section h2 {
+    margin-bottom: 3px; /* Reduce el espacio debajo del título de cada sección */
+}
+
+.cv-container section h3 {
+    margin-bottom: 2px; /* Reduce el espacio debajo del título de experiencia */
+}
+
+
+.header-centrado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.info-contacto p {
+    margin: 0; /* Elimina los márgenes */
+    padding: 0; /* Elimina el espacio interno */
+    line-height: 1.5; /* Reduce la separación entre líneas */
+    text-align: center;
+}
+
+.header-centrado h1 {
+    margin-bottom: 5px; /* Acerca más el título al contenido */
+}
+
+.cv-container section h3 {
+    font-size: 11px; /* Tamaño de texto para los títulos de experiencia */
+}
+
+.cv-container section ul li {
+    font-size: 12.5px; /* Tamaño de texto para los detalles de experiencia y habilidades */
+}
+
+
+
+

@@ -1,0 +1,49 @@
+<div #cv id="cv" class="cv-container">
+    <div class="left-panel">
+      <div class="profile">
+        <img src="../assets/daes_foto.jpg" alt="Foto de perfil">
+        <h2>DARLEY A. EVANGELISTA SAAVEDRA</h2>
+        <p>CIP: 311074</p>
+        <p>ING. DE SISTEMAS</p>
+      </div>
+      <div class="Object">
+        <h3>OBJETIVO</h3>
+        <p>Ingeniero de Sistemas titulado con sólidos conocimientos en desarrollo de software, bases de datos y gestión de proyectos tecnológicos. Busco una oportunidad para aplicar mis habilidades en análisis, diseño e implementación de soluciones informáticas, contribuyendo a la optimización de procesos en una empresa innovadora. Me destaco por mi capacidad de resolución de problemas, trabajo en equipo y adaptación a nuevas tecnologías.</p>
+      </div>
+      <div class="contact">
+        <h3>CONTACTO</h3>
+        <p>📞 {{ contacto.telefono }}</p>
+        <p><i class="fab fa-google"></i> {{ contacto.email }}</p>
+        <p>🔗 <a href="{{ contacto.linkedin }}" target="_blank" style="color: #0077b5; text-decoration: none;">LinkedIn</a></p>
+        <p>📍 {{ contacto.direccion }}</p>
+      </div>
+      <div id="educacion" class="education">
+        <h3>EDUCACIÓN</h3>
+        <ul>
+          <li *ngFor="let edu of educacion">{{ edu }}</li>
+        </ul>
+      </div>
+      <div class="skills">
+        <h3>HABILIDADES</h3>
+        <ul>
+          <li *ngFor="let habilidad of habilidades">{{ habilidad }}</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div id="experiencia" class="right-panel">
+      <h2>EXPERIENCIA</h2>
+      <div *ngFor="let job of experiencia" class="job">
+        <p class="cargo-fecha">
+          <strong class="cargo cargo-ul">{{ job.cargo }}</strong> - <span class="fecha">{{ job.fecha }}</span>
+        </p>
+        <p class="empresa">{{ job.empresa }}</p>
+        <ul class="detalles-ul">
+          <li *ngFor="let detalle of job.detalles">{{ detalle }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <button (click)="descargarPDF()">Descargar CV</button>
+  

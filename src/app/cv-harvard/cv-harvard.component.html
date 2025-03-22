@@ -1,0 +1,43 @@
+<!-- cv-harvard.component.html -->
+<div class="cv-container" #cv>
+    <header class="header-centrado">
+        <h1>{{ title }}</h1>
+        <div class="info-contacto">
+            <p><strong></strong> {{ contacto.cip }}</p>
+            <p><strong></strong> {{ contacto.telefono }} / <a href="mailto:{{ contacto.email }}">{{ contacto.email }}</a></p> 
+<!--            <p><strong> </strong> <a href="mailto:{{ contacto.email }}">{{ contacto.email }}</a></p>
+            <p><strong>LinkedIn:</strong> <a [href]="contacto.linkedin" target="_blank">{{ contacto.linkedin }}</a></p>
+            <p><strong>Dirección:</strong> {{ contacto.direccion }}</p>
+-->
+        </div>
+    </header>
+
+    <section>
+        <h2>Educación</h2>
+        <ul>
+            <li *ngFor="let edu of educacion">{{ edu }}</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Experiencia</h2>
+        <div *ngFor="let exp of experiencia">
+            <h3>
+                {{ exp.cargo }} - {{ exp.empresa }}
+                <span style="float: right;">{{ exp.fecha }}</span>
+            </h3>
+            <ul>
+                <li *ngFor="let detalle of exp.detalles">{{ detalle }}</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Habilidades</h2>
+        <ul>
+            <li *ngFor="let habilidad of habilidades">{{ habilidad }}</li>
+        </ul>
+    </section>
+</div>
+
+<button (click)="descargarPDF()">Descargar PDF</button>

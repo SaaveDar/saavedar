@@ -1,0 +1,132 @@
+/* Contenedor principal */
+.container {
+  padding-top: 20px; /* Ajusta este valor si necesitas más espacio */
+}
+
+.proyectos-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea */
+  justify-content: center; /* Centra los proyectos en la fila */
+  gap: 20px; /* Espaciado entre proyectos */
+  padding: 20px;
+}
+
+/* Tarjetas de proyecto */
+.proyecto {
+  background: #15202B; /* Azul oscuro elegante */
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 5px solid #F7C531; /* Dorado */
+  width: calc(33.333% - 20px); /* Hace que haya un máximo de 3 en cada fila */
+  min-width: 280px; /* Evita que se reduzca demasiado en pantallas pequeñas */
+  max-width: 400px; /* No más de 400px */
+  text-align: justify; /* Alinea bien el texto */
+}
+
+/* Responsividad: cuando el ancho sea menor a 900px, solo habrá 2 por fila */
+@media (max-width: 900px) {
+  .proyecto {
+      width: calc(50% - 20px); /* Solo 2 proyectos por fila */
+  }
+}
+
+/* Responsividad: cuando el ancho sea menor a 600px, solo habrá 1 por fila */
+@media (max-width: 600px) {
+  .proyecto {
+      width: 100%; /* Un solo proyecto por fila */
+  }
+}
+
+/* Efecto hover */
+.proyecto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 25px rgba(247, 197, 49, 0.5);
+}
+
+/* Títulos de proyectos */
+.proyecto h2 {
+  color: #F7C531;
+  font-size: 22px;
+  text-align: center;
+}
+
+/* Botón de GitHub */
+.proyecto a {
+  display: block;
+  text-decoration: none;
+  color: #15202B;
+  background: #F7C531;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.proyecto a:hover {
+  background: #e0b400;
+  transform: scale(1.05);
+}
+
+/* 🚀 Cohete (No se modifica, sigue igual) */
+.spaceship {
+  position: absolute;
+  width: 80px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif; /* Fuente moderna y limpia */
+  font-size: 40px; /* Tamaño ideal para resaltar sin ser exagerado */
+  font-weight: bold; /* Resalta el título */
+  text-align: center; /* Centrado */
+  color: #f5f5f5; /* Blanco suave para mejor legibilidad */
+  background: linear-gradient(135deg, #3a7bd5, #3a6073); /* Azul degradado elegante */
+  display: inline-block; /* Para ajustar el ancho */
+  padding: 15px 35px; /* Espaciado interno */
+  border-radius: 10px; /* Bordes suaves y modernos */
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.25); /* Sombra sutil */
+  text-transform: uppercase; /* Mayúsculas para elegancia */
+  letter-spacing: 2px; /* Espaciado entre letras */
+  position: relative; /* Para efectos decorativos */
+  overflow: hidden; /* Para efectos animados */
+}
+
+/* Efecto de reflejo animado */
+h1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: skewX(-30deg);
+  transition: left 0.8s ease-in-out;
+}
+
+h1:hover::before {
+  left: 120%;
+}
+
+h1 i {
+  margin-right: 12px; /* Espaciado entre el icono y el texto */
+  font-size: 45px; /* Tamaño adecuado */
+  vertical-align: middle; /* Alineación perfecta */
+  color: #f5f5f5; /* Color blanco suave */
+}
+
+.github-logo {
+  width: 50px; /* Tamaño adecuado */
+  height: 50px;
+  vertical-align: middle; /* Alineación perfecta con el texto */
+  margin-right: 10px; /* Espaciado con el texto */
+  background: none; /* Asegura que no tenga fondo */
+}
+
+
