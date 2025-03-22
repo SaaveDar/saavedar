@@ -35,12 +35,10 @@ export class CvComponent  {
     });
   }
   
-  
-
   contacto = {
     telefono: '+51 927 615 506',
     email: 'darleysaavedra@gmail.com',
-    linkedin: 'https://www.linkedin.com/in/darley-evangelista',
+    linkedin: 'https://www.linkedin.com/in/darley-a-evangelista-saavedra-09a674171/',
     direccion: 'Av 5 de abril Pesqueda II, Trujillo, Perú'
   };
 

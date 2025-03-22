@@ -20,10 +20,6 @@
                alt="Gmail" width="11" height="12">
           {{ contacto.email }}
         </p>
-        
-        
-        
-        
         <p>🔗 <a href="{{ contacto.linkedin }}" target="_blank" style="color: #0077b5; text-decoration: none;">LinkedIn</a></p>
         <p>📍 {{ contacto.direccion }}</p>
       </div>
@@ -45,7 +41,7 @@
       <h2>EXPERIENCIA</h2>
       <div *ngFor="let job of experiencia" class="job">
         <p class="cargo-fecha">
-          <strong class="cargo cargo-ul">{{ job.cargo }}</strong> - <span class="fecha">{{ job.fecha }}</span>
+          <strong class="cargo cargo-ul">{{ job.cargo }}</strong>  <span class="fecha">{{ job.fecha }}</span>
         </p>
         <p class="empresa">{{ job.empresa }}</p>
         <ul class="detalles-ul">
