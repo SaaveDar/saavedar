@@ -1,9 +1,9 @@
 <nav class="navbar">
   <ul>
-    <li><a routerLink="/">Inicio</a></li>
-    <li><a routerLink="/proyectos">Proyectos</a></li>
-    <li><a routerLink="/certificados">Certificados</a></li>
-    <li><a routerLink="/cv-harvard">CV Harvard</a></li>
+    <li id="navInicio"><a routerLink="/">Inicio</a></li>
+    <li id="navProyectos"><a routerLink="/proyectos">Proyectos</a></li>
+    <li id="navCertificados"><a routerLink="/certificados">Certificados</a></li>
+    <li id="navCvHarvard"><a routerLink="/cv-harvard">CV Harvard</a></li>
   </ul>
 </nav>
 
@@ -11,3 +11,15 @@
 <router-outlet></router-outlet>
 
 
+<!-- Tooltip flotante para cada botón del menú -->
+<div 
+  class="tooltip-box" 
+  *ngIf="navTourActive" 
+  [ngStyle]="tooltipStyle"
+>
+  <p>{{ navSteps[currentNavStep].desc }}</p>
+  <div class="tooltip-buttons">
+    <button class="primary-btn" (click)="nextNavStep()">Next</button>
+    <button class="secondary-btn" (click)="skipNavTour()">Skip</button>
+  </div>
+</div>

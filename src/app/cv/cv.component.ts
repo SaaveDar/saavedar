@@ -1,51 +1,61 @@
 import { Component, ElementRef, ViewChild, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { RouterModule } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
-import confetti from 'canvas-confetti'; // Importar confeti
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-cv',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.css']
 })
 export class CvComponent implements OnInit {
-  title = 'Mi Portafolio - Darley A. Evangelista Saavedra';
   @ViewChild('cv', { static: false }) cv!: ElementRef;
-  showModal: boolean = false;
+
+  showModal: boolean = false; // Modal de bienvenida
+  title = 'Mi Portafolio - Darley A. Evangelista Saavedra';
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      // Verificamos si ya se mostró el modal de bienvenida
       const modalShown = sessionStorage.getItem('modalShown');
       if (!modalShown) {
+        // Primera vez en esta sesión
         this.showModal = true;
         sessionStorage.setItem('modalShown', 'true');
-        this.lanzarConfeti(); // Llamamos al efecto confeti cuando el modal se muestra
+        this.lanzarConfeti(); // Efecto confeti
       }
     }
   }
 
   closeModal() {
+    // Cerrar el modal
     this.showModal = false;
+    // Indicar que el modal de CV ya se cerró
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.setItem('cvModalClosed', 'true');
+      document.dispatchEvent(new CustomEvent('modalClosed'));
+    }
   }
 
   lanzarConfeti() {
     const duration = 3000; // Duración total en milisegundos
     const animationEnd = Date.now() + duration;
-    const colors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#85e3ff', '#b5c0ff', '#8093f1'];
-  
-    // Verificar si ya existe un canvas en el body y eliminarlo antes de agregar uno nuevo
+    const colors = [
+      '#ff0a54', '#ff477e', '#ff7096', '#ff85a1',
+      '#fbb1bd', '#85e3ff', '#b5c0ff', '#8093f1'
+    ];
+
+    // Crear canvas
     const existingCanvas = document.getElementById('confetti-canvas');
     if (existingCanvas) {
       document.body.removeChild(existingCanvas);
     }
-  
-    // Crear un nuevo canvas para el confeti
     const canvas = document.createElement('canvas');
     canvas.id = 'confetti-canvas';
     canvas.style.position = 'fixed';
@@ -53,13 +63,12 @@ export class CvComponent implements OnInit {
     canvas.style.left = '0';
     canvas.style.width = '100vw';
     canvas.style.height = '100vh';
-    canvas.style.pointerEvents = 'none'; // Para que no bloquee el modal
-    canvas.style.zIndex = '9999'; // Para que esté por encima del modal
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '9999';
     document.body.appendChild(canvas);
-  
-    // Inicializar confetti en el canvas
+
     const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
-  
+
     const confettiFrame = () => {
       myConfetti({
         particleCount: 7,
@@ -67,6 +76,9 @@ export class CvComponent implements OnInit {
         spread: 100,
         origin: { x: 0 },
         colors: colors,
+        startVelocity: 30,
+        ticks: 200,
+        gravity: 0.5,
       });
       myConfetti({
         particleCount: 7,
@@ -74,18 +86,21 @@ export class CvComponent implements OnInit {
         spread: 100,
         origin: { x: 1 },
         colors: colors,
+        startVelocity: 30,
+        ticks: 200,
+        gravity: 0.5,
       });
-  
+
       if (Date.now() < animationEnd) {
         requestAnimationFrame(confettiFrame);
       } else {
-        document.body.removeChild(canvas); // Eliminar el canvas cuando termine el efecto
+        setTimeout(() => {
+          document.body.removeChild(canvas);
+        }, 3000);
       }
     };
-  
     confettiFrame();
   }
-  
 
   descargarPDF() {
     if (!this.cv) return;
@@ -98,7 +113,6 @@ export class CvComponent implements OnInit {
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
-
       pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
       pdf.save(`CurriculumVitae_EVANGELISTA_SAAVEDRA_DARLEY_A_${year}.pdf`);
     });
@@ -181,6 +195,31 @@ export class CvComponent implements OnInit {
         'Visualización de indicadores en Power BI, disponibilidad, ventas, promedio de consumo.',
         'Asistencia tecnica en el sistema de informacion SISMED en los establecimientos de salud.',
       ],
-    }
+    },
+    {
+      cargo: 'ASISTENTE/AUXILIAR DE SISTEMAS',
+      empresa: 'RED DE SALUD GRAN CHIMÚ',
+      fecha: 'AGOSTO 2021 - ENERO 2023',
+      detalles: [
+        'Brindar soporte de instalación e incidencias a los usuarios en: SISMED, SIEN ACREDITACIÓN, SIGA, SIAF (cliente).',
+        'Cableado de la red en los nuevos puntos.',
+        'Desarrollo y soporte en la Portal web de la institución.',
+        'Instalación de reloj biométrico para la asistencia del personal de Salud.',
+        'Desarrollo de un sistema web versión beta para el Hospital de Cascas (SISTEMA DE CITAS MEDICAS)',
+        'Gestionar usuarios para la firma digital.',
+      ],
+    },
+    {
+      cargo: 'PRACTICANTE PROFESIONAL',
+      empresa: 'SUNARP TRUJILLO',
+      fecha: 'MARZO - AGOSTO 2021',
+      detalles: [
+        'Soporte técnico a nivel de software (Unidad de Registro, Vehículo y Registro de Propiedad) y hardware.',
+        'Actualización de la Visualización de partidas.',
+        'Configuración de IPs y dominios en nuevos equipos informáticos.',
+        'Gestión de las hojas de salida.',
+        'Administración de usuarios y archivos en la red de dominio.',
+      ],
+    },
   ];
 }

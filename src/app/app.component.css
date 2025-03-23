@@ -247,8 +247,6 @@ body {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-
-
 h3 {
   color: #333;
 }
@@ -269,3 +267,76 @@ button {
 button:hover {
   background: #008c9e;
 }
+
+
+/* Estilos para el tooltip flotante con flecha */
+.tooltip-box {
+  position: absolute;
+  background: #2196f3; /* Fondo azul */
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  width: 220px;
+  z-index: 9999;
+  /* No uses margin-left en este caso, 
+     pues la flecha ya sobresale al lado izquierdo */
+}
+
+/* Flecha en el costado izquierdo, arriba, apuntando hacia la izquierda */
+.tooltip-box::before {
+  content: "";
+  position: absolute;
+  /* Ajusta 'top' para mover la flecha arriba/abajo */
+  top: 10px;
+  /* Saca la flecha fuera del tooltip por la izquierda */
+  left: -10px;
+  transform: none;
+
+  /* Triángulo que apunta hacia la izquierda */
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #2196f3;
+}
+
+/* Texto del tooltip */
+.tooltip-box p {
+  margin: 0 0 10px 0;
+}
+
+/* Contenedor de botones (Next, Skip) */
+.tooltip-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Botón principal (Next) */
+.primary-btn {
+  background: #000;  /* Negro */
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+.primary-btn:hover {
+  background: #333;  /* Negro un poco más claro en hover */
+}
+
+/* Botón secundario (Skip) */
+.secondary-btn {
+  background: #444;  /* Gris oscuro */
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+.secondary-btn:hover {
+  background: #666;  /* Gris más claro en hover */
+}
+
+
