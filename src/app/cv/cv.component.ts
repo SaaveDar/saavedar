@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { RouterModule } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import confetti from 'canvas-confetti'; // Importar confeti
 
 @Component({
   selector: 'app-cv',
@@ -24,6 +25,7 @@ export class CvComponent implements OnInit {
       if (!modalShown) {
         this.showModal = true;
         sessionStorage.setItem('modalShown', 'true');
+        this.lanzarConfeti(); // Llamamos al efecto confeti cuando el modal se muestra
       }
     }
   }
@@ -32,18 +34,71 @@ export class CvComponent implements OnInit {
     this.showModal = false;
   }
 
+  lanzarConfeti() {
+    const duration = 3000; // Duración total en milisegundos
+    const animationEnd = Date.now() + duration;
+    const colors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#85e3ff', '#b5c0ff', '#8093f1'];
+  
+    // Verificar si ya existe un canvas en el body y eliminarlo antes de agregar uno nuevo
+    const existingCanvas = document.getElementById('confetti-canvas');
+    if (existingCanvas) {
+      document.body.removeChild(existingCanvas);
+    }
+  
+    // Crear un nuevo canvas para el confeti
+    const canvas = document.createElement('canvas');
+    canvas.id = 'confetti-canvas';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.pointerEvents = 'none'; // Para que no bloquee el modal
+    canvas.style.zIndex = '9999'; // Para que esté por encima del modal
+    document.body.appendChild(canvas);
+  
+    // Inicializar confetti en el canvas
+    const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
+  
+    const confettiFrame = () => {
+      myConfetti({
+        particleCount: 7,
+        angle: 60,
+        spread: 100,
+        origin: { x: 0 },
+        colors: colors,
+      });
+      myConfetti({
+        particleCount: 7,
+        angle: 120,
+        spread: 100,
+        origin: { x: 1 },
+        colors: colors,
+      });
+  
+      if (Date.now() < animationEnd) {
+        requestAnimationFrame(confettiFrame);
+      } else {
+        document.body.removeChild(canvas); // Eliminar el canvas cuando termine el efecto
+      }
+    };
+  
+    confettiFrame();
+  }
+  
+
   descargarPDF() {
     if (!this.cv) return;
     const cvElement = this.cv.nativeElement;
     const year = new Date().getFullYear();
-  
+
     html2canvas(cvElement, {
       scale: 2,
       windowHeight: 297 * 4,
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
-  
+
       pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
       pdf.save(`CurriculumVitae_EVANGELISTA_SAAVEDRA_DARLEY_A_${year}.pdf`);
     });
@@ -112,7 +167,7 @@ export class CvComponent implements OnInit {
         'Consultas y subconsultas para reporte de ingresantes, matriculas, egresados, titulados',
         'Automatización de monitoreo de tablespaces de PROD y UPROD (Python, oracle client y crontab)',
         'Monitoreo de backup automatizado por Veeam Backup nivel 0 y 1.',
-        'Instalacion  y  configuracion  de  Zabbix  server  para  el  monitoreo  de  espacio  de  las unidades de almacenamiento en Centos 7.',
+        'Instalacion y configuracion de Zabbix server para el monitoreo de espacio de las unidades de almacenamiento en Centos 7.',
         'Automatización de copia de seguridad con python y crontab',
       ],
     },
@@ -124,33 +179,8 @@ export class CvComponent implements OnInit {
         'Generar ICI Mensual y verificar saldos negativos en el stock final de cada medicamento.',
         'Reporte de medicamentos por mes en SQL SERVER.',
         'Visualización de indicadores en Power BI, disponibilidad, ventas, promedio de consumo.',
-        'Asistencia  tecnica  en  el  sistema  de  informacion  SISMED  en  los  establecimientos  de salud.',
+        'Asistencia tecnica en el sistema de informacion SISMED en los establecimientos de salud.',
       ],
-    },
-    {
-      cargo: 'ASISTENTE/AUXILIAR DE SISTEMAS',
-      empresa: 'RED DE SALUD GRAN CHIMÚ',
-      fecha: 'AGOSTO 2021 - ENERO 2023',
-      detalles: [
-        'Brindar soporte de instalación e incidencias a los usuarios en: SISMED, SIEN ACREDITACIÓN, SIGA, SIAF (cliente).',
-        'Cableado de la red en los nuevos puntos.',
-        'Desarrollo y soporte en la Portal web de la institución.',
-        'Instalación de reloj biométrico para la asistencia del personal de Salud.',
-        'Desarrollo de un sistema web versión beta para el Hospital de Cascas (SISTEMA DE CITAS MEDICAS)',
-        'Gestionar usuarios para la firma digital.',
-      ],
-    },
-    {
-      cargo: 'PRACTICANTE PROFESIONAL',
-      empresa: 'SUNARP TRUJILLO',
-      fecha: 'MARZO - AGOSTO 2021',
-      detalles: [
-        'Soporte técnico a nivel de software (Unidad de Registro, Vehículo y Registro de Propiedad) y hardware.',
-        'Actualización de la Visualización de partidas.',
-        'Configuración de IPs y dominios en nuevos equipos informáticos.',
-        'Gestión de las hojas de salida.',
-        'Administración de usuarios y archivos en la red de dominio.',
-      ],
-    },
+    }
   ];
 }

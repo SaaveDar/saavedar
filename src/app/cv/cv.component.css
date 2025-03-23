@@ -289,31 +289,122 @@ html, body {
 
 
   /* Estilos para la Ventana Modal */
-.modal {
-  display: flex;
+/* Fondo con desenfoque */
+.modal-overlay {
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+/* Estilo de la ventana modal */
+.modal-container {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  width: 85%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: white;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cabecera */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-header h2 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+/* 🔴 Botón de cerrar más pequeño y proporcionado */
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* 🎉 Confeti con muchas chispas */
+.confetti-container {
+  position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 50%;
-  text-align: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+.confetti-container span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--confetti-color);
+  border-radius: 50%;
+  opacity: 0;
+  animation: explode 2s ease-out forwards;
 }
 
-.close {
-  float: right;
-  font-size: 24px;
-  font-weight: bold;
+/* Colores de chispas */
+.confetti-container span:nth-child(odd) { --confetti-color: #ff595e; }
+.confetti-container span:nth-child(even) { --confetti-color: #ffca3a; }
+
+/* Efecto de explosión */
+@keyframes explode {
+  0% { transform: scale(0.5); opacity: 1; }
+  50% { transform: scale(2) translateY(-50px); opacity: 1; }
+  100% { transform: scale(0.5) translateY(150px); opacity: 0; }
+}
+
+/* Botón de acción */
+.primary-btn {
+  background: #ffcc00;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
 }
+
+.primary-btn:hover {
+  background: #ffaa00;
+}
+
+
