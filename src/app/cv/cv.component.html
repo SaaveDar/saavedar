@@ -53,3 +53,16 @@
   
   <button (click)="descargarPDF()">Descargar CV</button>
   
+
+  <!-- Ventana Modal -->
+<div id="welcomeModal" class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>¡Bienvenido a mi CV Digital!</h2>
+    <p>
+      Soy Darley A. Evangelista Saavedra, Ingeniero de Sistemas apasionado por la tecnología 
+      y el desarrollo de soluciones innovadoras. Aquí encontrarás mi experiencia, habilidades 
+      y formación profesional. ¡Gracias por tu visita!
+    </p>
+  </div>
+</div>

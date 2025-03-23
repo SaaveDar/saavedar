@@ -1,37 +1,51 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-//import { RouterOutlet } from '@angular/router';
-
 import { RouterModule } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-cv',
- // standalone: true,
- // imports: [CommonModule], //RouterOutlet
- imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.css']
 })
-export class CvComponent  {
+export class CvComponent implements OnInit {
   title = 'Mi Portafolio - Darley A. Evangelista Saavedra';
-
   @ViewChild('cv', { static: false }) cv!: ElementRef;
+  showModal: boolean = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      const modalShown = sessionStorage.getItem('modalShown');
+      if (!modalShown) {
+        this.showModal = true;
+        sessionStorage.setItem('modalShown', 'true');
+      }
+    }
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
 
   descargarPDF() {
+    if (!this.cv) return;
     const cvElement = this.cv.nativeElement;
     const year = new Date().getFullYear();
   
     html2canvas(cvElement, {
       scale: 2,
-      windowHeight: 297 * 4, // Ajusta la altura para capturar toda la página A4
+      windowHeight: 297 * 4,
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
   
-      pdf.addImage(imgData, 'PNG', 0, 0, 210, 297); // Usa el tamaño exacto de A4
-      pdf.save(`CurriculumVitae_EVANGELISTA SAAVEDRA, DARLEY A._${year}.pdf`);
+      pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
+      pdf.save(`CurriculumVitae_EVANGELISTA_SAAVEDRA_DARLEY_A_${year}.pdf`);
     });
   }
   
@@ -139,5 +153,4 @@ export class CvComponent  {
       ],
     },
   ];
-
 }
