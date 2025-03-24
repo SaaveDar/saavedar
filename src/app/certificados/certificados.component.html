@@ -1,6 +1,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
 <div class="container">
   <div *ngFor="let categoria of categorias; let catIdx = index" class="category">
     <div class="title-box">
@@ -8,14 +7,15 @@
     </div>
     <ul class="tree">
       <li *ngFor="let cert of categoria.certificados; let certIdx = index">
-        <span class="cert-title" (click)="mostrarDetalles(catIdx, certIdx)" (touchstart)="mostrarDetalles(catIdx, certIdx)">
+        <span class="cert-title" 
+              (click)="mostrarDetalles(catIdx, certIdx)" 
+              (touchstart)="mostrarDetalles(catIdx, certIdx)">
           {{ cert.titulo }}
         </span>
         <div *ngIf="cert.visible" class="detalle">
           <p class="typing" [innerText]="cert.textoAnimado"></p>
           <a *ngIf="cert.textoAnimado.length > 10" [href]="cert.enlace" target="_blank">📜 Certificado</a>
         </div>
-        
       </li>
     </ul>
   </div>

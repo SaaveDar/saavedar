@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-certificados',
@@ -9,6 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./certificados.component.css']
 })
 export class CertificadosComponent {
+  constructor(private cdRef: ChangeDetectorRef) { } // Agregar ChangeDetectorRef
   categorias = [
     {
       nombre: 'Análisis de Datos',
@@ -192,6 +194,12 @@ export class CertificadosComponent {
     },
   ];
 
+  ngAfterViewInit() {
+    if (typeof document !== 'undefined') {
+      document.addEventListener('touchstart', () => {}, { passive: true });
+    }
+  } 
+
   mostrarDetalles(categoriaIndex: number, certIndex: number) {
     this.categorias.forEach((categoria, catIdx) => {
       categoria.certificados.forEach((cert, certIdx) => {
@@ -206,6 +214,7 @@ export class CertificadosComponent {
         }
       });
     });
+    this.cdRef.detectChanges(); // 🔥 Forzar actualización en Angular
   }
   
 
@@ -213,19 +222,18 @@ export class CertificadosComponent {
     let texto = `⏳ Duración: ${cert.duracion}\n📆 Fecha: ${cert.fecha}\n📜 Ver certificado aquí ➝ `;
     let i = 0;
     cert.textoAnimado = ''; // Reiniciar animación
+
     const escribirTexto = () => {
       if (i < texto.length) {
         cert.textoAnimado += texto[i];
         i++;
+        this.cdRef.detectChanges(); // 🔥 Forzar la actualización de la vista
         setTimeout(escribirTexto, 50); // Llamamos a la función recursivamente
       }
     };
     escribirTexto();
     
   }
-  ngOnInit() {
-    document.addEventListener('touchstart', () => {}, { passive: true });
-  }
-  
+
   
 }

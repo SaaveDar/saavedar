@@ -4,7 +4,7 @@
   gap: 20px;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 40px; /* Ajusta el valor para bajar más */
+  margin-top: 40px;
 }
 
 .category {
@@ -59,9 +59,8 @@
   font-weight: bold;
   cursor: pointer;
   transition: color 0.3s;
-  
-  display: block; /* Asegura que ocupe toda la línea */
-  text-align: left; /* Alinea el texto a la izquierda */
+  display: block;
+  text-align: left;
 }
 
 .cert-title:hover {
@@ -74,11 +73,10 @@
   border-radius: 5px;
   margin-top: 5px;
   overflow: hidden;
-  white-space: pre-wrap; /* Permite saltos de línea */
+  white-space: pre-wrap; /* 🔥 Permite saltos de línea */
   word-break: break-word;
-
-  display: block; /* Asegura que ocupe toda la línea */
-  text-align: left; /* Alinea el texto a la izquierda */
+  display: block;
+  text-align: left;
 }
 
 .typing {
@@ -101,16 +99,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline
-
+  text-decoration: underline;
 }
 
 
-/* para moviules: efectos**/
-button:hover {
-  background-color: red;
-}
-
-button:active {
-  background-color: blue;
-}
