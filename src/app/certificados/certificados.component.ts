@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
@@ -194,12 +194,7 @@ export class CertificadosComponent {
     },
   ];
 
-  ngAfterViewInit() {
-    if (typeof document !== 'undefined') {
-      document.addEventListener('touchstart', () => {}, { passive: true });
-    }
-  } 
-
+  
   mostrarDetalles(categoriaIndex: number, certIndex: number) {
     this.categorias.forEach((categoria, catIdx) => {
       categoria.certificados.forEach((cert, certIdx) => {
