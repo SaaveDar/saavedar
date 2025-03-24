@@ -213,11 +213,18 @@ export class CertificadosComponent {
     let texto = `⏳ Duración: ${cert.duracion}\n📆 Fecha: ${cert.fecha}\n📜 Ver certificado aquí ➝ `;
     let i = 0;
     cert.textoAnimado = ''; // Reiniciar animación
-    const intervalo = setInterval(() => {
-      cert.textoAnimado += texto[i];
-      i++;
-      if (i >= texto.length) clearInterval(intervalo);
-    }, 50); // Velocidad ajustable
+    const escribirTexto = () => {
+      if (i < texto.length) {
+        cert.textoAnimado += texto[i];
+        i++;
+        setTimeout(escribirTexto, 50); // Llamamos a la función recursivamente
+      }
+    };
+    escribirTexto();
+    
+  }
+  ngOnInit() {
+    document.addEventListener('touchstart', () => {}, { passive: true });
   }
   
   

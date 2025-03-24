@@ -74,7 +74,8 @@
   border-radius: 5px;
   margin-top: 5px;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: pre-wrap; /* Permite saltos de línea */
+  word-break: break-word;
 
   display: block; /* Asegura que ocupe toda la línea */
   text-align: left; /* Alinea el texto a la izquierda */
@@ -104,3 +105,12 @@ a:hover {
 
 }
 
+
+/* para moviules: efectos**/
+button:hover {
+  background-color: red;
+}
+
+button:active {
+  background-color: blue;
+}
