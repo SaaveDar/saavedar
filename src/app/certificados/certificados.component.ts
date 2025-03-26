@@ -98,6 +98,14 @@ export class CertificadosComponent {
       nombre: 'Gestión de Proyectos / Gestión Pública',
       certificados: [
         {
+          titulo: 'Fundamentos ITIL 4',
+          duracion: '08 horas',
+          fecha: 'Marzo 2025',
+          enlace: 'https://www.udemy.com/certificate/UC-6a29b0d8-8b57-4b56-b6a6-9f643374deb3/',
+          visible: false,
+          textoAnimado: ''
+        },
+        {
           titulo: 'Gestión ágil de Proyectos - SCRUM',
           duracion: '01 horas',
           fecha: 'Marzo 2025',
@@ -112,7 +120,7 @@ export class CertificadosComponent {
           enlace: 'https://lms.becasgruporomero.pe/mod/customcert/verify_certificate.php?code=FImcFBs2FJ&qrcode=1',
           visible: false,
           textoAnimado: ''
-        }
+        },
       ]
     },
     {
