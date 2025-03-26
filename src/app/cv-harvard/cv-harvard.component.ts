@@ -80,7 +80,8 @@ export class CvHarvardComponent {
         'Curso de Soporte Técnico',
         'Curso de Lógica Computacional',
         'Curso de Virtualización de Aplicaciones',
-        'Curso de Redes de Computadoras',
+        'Curso de Software Servidor de Red',
+        'Curso de Negocios Electrónicos',
       ],
     },
     {
