@@ -169,6 +169,7 @@ export class CvComponent implements OnInit {
         'Curso de Virtualización de Aplicaciones',
         'Curso de Software Servidor de Red',
         'Curso de Negocios Electrónicos',
+        'Asesor de Informe de Títulación: Herramientas de diseño gráfico a la publicidad digital',
       ],
     },
     {
