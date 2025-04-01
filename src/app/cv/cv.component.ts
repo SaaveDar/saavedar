@@ -106,17 +106,24 @@ export class CvComponent implements OnInit {
     if (!this.cv) return;
     const cvElement = this.cv.nativeElement;
     const year = new Date().getFullYear();
-
+  
     html2canvas(cvElement, {
-      scale: 2,
-      windowHeight: 297 * 4,
+      scale: 2, // Mantiene alta calidad
+      useCORS: true, // Para evitar problemas con imágenes externas
     }).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
+      const imgData = canvas.toDataURL('image/jpeg', 0.9); // JPEG con alta calidad
+      const pdf = new jsPDF({
+        orientation: 'p',
+        unit: 'mm',
+        format: 'a4',
+        compress: true, // Habilita compresión
+      });
+  
+      pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
       pdf.save(`CurriculumVitae_EVANGELISTA_SAAVEDRA_DARLEY_A_${year}.pdf`);
     });
   }
+  
   
   contacto = {
     telefono: '+51 927 615 506',
@@ -141,12 +148,23 @@ export class CvComponent implements OnInit {
   ];
 
   educacion = [
-    "Facturación electrónica - En Proceso",
-    "Máster Oracle DBA+ - Udemy",
+    "Facturación electrónica - En Proceso (2025)",
+    "Máster Oracle DBA+ - Udemy (2024)",
     "Ing. Comput. y Sist. - UPAO (2015-2020)"
   ];
 
   experiencia = [
+    {
+      cargo: 'DESARROLLADOR FULLSTACK SISTEMA DE MEDICAMENTOS',
+      empresa: 'INDEPENDIENTE / FREELANCE',
+      fecha: 'ENERO - FEBRERO 2025',
+      detalles: [
+        'Desarrollo módulo de catalogo de Productos ',
+        'Módulo de ventas',
+        'Módulo de Kardex',
+        'Módulo de Nota de ingreso y salida de productos',
+      ],
+    },
     {
       cargo: 'DESARROLLADOR EN VB.NET | Locador',
       empresa: 'RAPI SISTEMA SAC',

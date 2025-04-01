@@ -19,22 +19,31 @@ export class CvHarvardComponent {
   descargarPDF() {
     const cvElement = this.cv.nativeElement;
     const year = new Date().getFullYear();
-    
-    html2canvas(cvElement, { scale: 2 }).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  
+    html2canvas(cvElement, { scale: 2, useCORS: true }).then(canvas => {
+      const imgData = canvas.toDataURL('image/jpeg', 0.9); // JPEG con alta calidad y menor peso
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+        compress: true, // Activa compresión
+      });
+  
       const imgWidth = 210;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+  
+      pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
       pdf.save(`CurriculumVitae_EVANGELISTA_SAAVEDRA_${year}.pdf`);
     });
   }
+  
 
   contacto = {
+    cargo: 'Desarrollador, Analista de datos y redes',
     telefono: '+51 927 615 506',
     cip: 'CIP: 311074',
     email: 'darleysaavedra@gmail.com',
-    linkedin: 'https://www.linkedin.com/in/darley-evangelista',
+    linkedin: 'https://www.linkedin.com/in/darley-a-evangelista-saavedra-09a674171/',
     direccion: 'Av 5 de abril Pesqueda II, Trujillo, Perú'
   };
 
@@ -54,12 +63,23 @@ export class CvHarvardComponent {
   ];
 
   educacion = [
-    'Facturación electrónica - En Proceso',
-    'Máster Oracle DBA+ - Udemy',
+    'Facturación electrónica - En Proceso (2025)',
+    'Máster Oracle DBA+ - Udemy (2024)',
     'Ing. Computación y Sistemas - UPAO (2015-2020)'
   ];
 
   experiencia = [
+    {
+      cargo: 'DESARROLLADOR FULLSTACK SISTEMA DE MEDICAMENTOS',
+      empresa: 'INDEPENDIENTE / FREELANCE',
+      fecha: 'ENERO - FEBRERO 2025',
+      detalles: [
+        'Desarrollo módulo de catalogo de Productos ',
+        'Módulo de ventas',
+        'Módulo de Kardex',
+        'Módulo de Nota de ingreso y salida de productos',
+      ],
+    },
     {
       cargo: 'DESARROLLADOR EN VB.NET | Locador',
       empresa: 'RAPI SISTEMA SAC',
