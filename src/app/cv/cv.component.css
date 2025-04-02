@@ -16,7 +16,7 @@ html, body {
     max-width: 900px;
     width: 100%;
     height: auto;
-    margin: 30px auto; /* Se agregó margen superior para bajarlo */
+    margin: -20px auto; /* Se agregó margen superior para bajarlo */
     padding: 20px;
     background: white;
     border-radius: 10px;
@@ -66,7 +66,7 @@ html, body {
   .right-panel h2 {
     margin-bottom: 10px;
     font-size: 18px;
-    text-align: left;
+    text-align: center;
   }
   
   /* Cada trabajo */
@@ -245,6 +245,11 @@ html, body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  
+    
+    perspective: 1000px;
+    transition: transform 0.5s;
+  
   }
   
   
@@ -264,6 +269,10 @@ html, body {
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
+
+    position: relative;
+    z-index: 2;  /* Asegura que el botón esté por encima del footer */
+    margin-bottom: 50px;  /* Agrega un margen para que el botón no quede tapado */
   }
   
   button:hover {
@@ -411,3 +420,51 @@ html, body {
 
 
 
+
+
+
+
+.language-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Reduce la separación entre botones */
+  margin-top: 50px; /* Baja los botones respecto al menú de navegación */
+  position: relative;
+  z-index: 10;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn.es {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: white;
+}
+
+.lang-btn.en {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+}
+
+.lang-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+.flip {
+  transform: rotateY(180deg);
+}

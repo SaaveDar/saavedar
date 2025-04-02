@@ -12,12 +12,16 @@ import confetti from 'canvas-confetti';
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.css']
 })
+
+
 export class CvComponent implements OnInit {
   @ViewChild('cv', { static: false }) cv!: ElementRef;
 
   showModal: boolean = false; // Modal de bienvenida
   title = 'Mi Portafolio - Darley A. Evangelista Saavedra';
-
+  language: string = 'es'; // Idioma predeterminado
+  flipping: boolean = false; // Controla la animación de voltear
+  
   constructor(@Inject(PLATFORM_ID) private platformId: any) {}
 
   ngOnInit() {
@@ -30,6 +34,16 @@ export class CvComponent implements OnInit {
         sessionStorage.setItem('modalShown', 'true');
         this.lanzarConfeti(); // Efecto confeti
       }
+    }
+  }
+
+  toggleLanguage(lang: string) {
+    if (this.language !== lang) {
+      this.flipping = true; // Activar animación
+      setTimeout(() => {
+        this.language = lang; // Cambiar idioma
+        this.flipping = false; // Desactivar animación
+      }, 250); // Duración de la primera mitad de la animación
     }
   }
 
@@ -153,6 +167,29 @@ export class CvComponent implements OnInit {
     "Ing. Comput. y Sist. - UPAO (2015-2020)"
   ];
 
+  habilidadesEn = [
+     'Database management: SQL Server, MySQL, MongoDB, Oracle, PostgreSQL',
+     'Virtualization: VMware, VirtualBox, Hyper-V.',  
+     'Operating Systems: Windows, Linux, and Windows Server administration.',  
+     'Agile methodologies: Scrum, Kanban, and software development life cycle.',  
+     'Automation and Scripting: Use of PowerShell, Bash, Python to automate tasks.',  
+     'Logical and algorithmic thinking.',  
+     'Troubleshooting and issue resolution.' , 
+     'Creativity and innovation.'  ,
+     'Self-taught and continuous learning.'  ,
+     'Effective communication.'  ,
+     'Professional ethics, responsibility, and commitment to work.'  ,
+     'Teamwork and proactive attitude.'  ,
+
+  ];
+
+  educacionEn = [
+    'Electronic Billing - In Progress (2025)'  ,
+    'Oracle DBA+ Master - Udemy (2024)'  ,
+    'Computer Engineering and Systems - UPAO (2015-2020)'  ,
+
+  ];
+
   experiencia = [
     {
       cargo: 'DESARROLLADOR FULLSTACK SISTEMA DE MEDICAMENTOS',
@@ -240,6 +277,97 @@ export class CvComponent implements OnInit {
         'Gestión de las hojas de salida.',
         'Administración de usuarios y archivos en la red de dominio.',
       ],
+    },
+  ];
+  experienciaEn = [
+    {
+      position: 'DEVELOPER FULLSTACK MEDICATION SYSTEM',
+      company: 'INDEPENDENT / FREELANCE',
+      date: 'JANUARY - FEBRUARY 2025',
+      details: [
+        'Product Catalog Module Development ',
+        'Sales module',
+        'Kardex Module',
+        'Incoming and outgoing products note module',
+      ],
+    },
+    {
+      position: 'VB.NET DEVELOPER | Locator',
+      company: 'RAPI SISTEMA SAC',
+      date: 'SEPTEMBER - DECEMBER 2024',
+      details: [
+        'Reporting Module',
+        'Schedule Permissions Module: No Access, All Day Access and by Range of Hours',
+        'Report Maintainer Module: Crystal Report and DataSet',
+        'Scripts: views, stored procedures in SQL Server', 'Scripts: views, stored procedures in SQL Server', 'Scripts: views, stored procedures in SQL Server',
+      ],
+    },
+    {
+      position: 'TEACHER',
+      company: 'INST. EDUC. SUP. TECN. PUBLICO “LAREDO”',
+      date: 'JUNE - DECEMBER 2024',
+      details: [
+        'Operating Systems Course',
+        'Technical Support Course',
+        'Computational Logic Course',
+        'Application Virtualization Course',
+        'Network Server Software Course',
+        'E-Business Course',
+        'Degree Report Advisor: Graphic Design Tools to Digital Advertising',
+      ],
+    },
+    {
+      position: 'DATABASE ASSISTANT',
+      company: 'UNIVERSIDAD PRIVADA ANTENOR ORREGO',
+      date: 'JANUARY - APRIL 2024',
+      details: [
+        'JOBS monitoring automation with Python, oracle client and crontab',
+        'Process monitoring in PROD and UPROD in Oracle Developer',
+        'Space monitoring of PROD and UPROD instances',
+        'Queries and sub-queries for reporting of entrants, enrollments, graduates, graduates',
+        'Automation of PROD and UPROD tablespace monitoring (Python, oracle client and crontab)',
+        'Automated backup monitoring by Veeam Backup level 0 and 1',
+        'Installation and configuration of Zabbix server for space monitoring of storage units in Centos 7.', 'Automation of backup with Veeam Backup level 0 and 1',
+        'Backup automation with python and crontab',
+      ],
+    },
+    {
+      position: 'INFORMATICIAN PHARMACY-SISMED | Locator',
+      company: 'RED DE SALUD GRAN CHIMÚ"',
+      date: 'FEBRUARY - NOVEMBER 2023',
+      details: [
+        'Generate Monthly ICI and verify negative balances in the final stock of each medicine.',
+        'Report of medications per month in SQL SERVER.', 
+        'Visualization of indicators in Power BI, availability, sales, average consumption',
+        'Technical assistance in the SISMED information system in health facilities.', 'Technical assistance in the SISMED information system in health facilities.', 'Technical assistance in the SISMED information system in health facilities.',
+      ],
+    },
+    {
+      cargo: 'SYSTEMS ASSISTANT/AUXILIARY',  
+      empresa: 'RED DE SALUD GRAN CHIMÚ',  
+      fecha: 'AUGUST 2021 - JANUARY 2023',  
+      detalles: [  
+        'Provided installation support and issue resolution for users in: SISMED, SIEN ACCREDITATION, SIGA, SIAF (client).',  
+        'Network cabling in new connection points.',  
+        'Development and support for the institution’s web portal.',  
+        'Installation of a biometric clock for healthcare personnel attendance tracking.',  
+        'Developed a beta version of a web-based medical appointment system for Cascas Hospital.',  
+        'Managed users for digital signature authentication.',  
+      ],  
+
+    },
+    {
+      cargo: 'PROFESSIONAL INTERN',  
+      empresa: 'SUNARP TRUJILLO',  
+      fecha: 'MARCH - AUGUST 2021',  
+      detalles: [  
+        'Technical support at the software level (Registry Unit, Vehicle, and Property Registration) and hardware.',  
+        'Updated the display of records.',  
+        'Configured IPs and domains on new computer equipment.',  
+        'Managed exit sheets.',  
+        'User and file administration on the domain network.',  
+      ],  
+
     },
   ];
 }

@@ -23,3 +23,43 @@
     <button class="secondary-btn" (click)="skipNavTour()">Skip</button>
   </div>
 </div>
+
+
+<footer>
+  <div class="copyright">
+    <span>© 2025 Sitio Web desarrollado con Angular 19.</span>
+    <span>Todos los derechos reservados a Darley Evangelista .</span>
+  </div>
+</footer>
+
+
+<a href="https://wa.me/51927615506" class="whatsapp-button" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+
+
+<!-- Botón de Chat -->
+<!-- Botón de Chat -->
+<button class="chat-button" (click)="toggleChat()">💬</button>
+
+<!-- Chat Emergente -->
+<div class="chat-box" *ngIf="chatOpen">
+  <div class="chat-header">
+    <span>Asistente Virtual</span>
+    <button class="close-btn" (click)="toggleChat()">✖</button>
+  </div>
+  <div class="chat-content">
+    <div *ngFor="let msg of messages" class="chat-message">
+      <strong>{{ msg.sender }}:</strong> {{ msg.text }}
+    </div>
+  </div>
+  <div class="chat-input">
+    <input type="text" [(ngModel)]="userMessage" (keyup.enter)="sendMessage()" placeholder="Escribe tu pregunta..." />
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
+</div>
+
+<!-- Botón de WhatsApp -->
+<a href="https://wa.me/51987654321" class="whatsapp-button" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>

@@ -2,11 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PLATFORM_ID } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // <-- Importamos FormsModule
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule], // <-- Agregamos FormsModule aquí
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -18,18 +19,28 @@ export class AppComponent implements OnInit {
   currentNavStep: number = 0;
   tooltipStyle: any = {};
   navSteps = [
-    { id: 'navInicio', desc: 'Aquí encuentras una vista general de mi portafolio y podrás descargar en formato PDF.' },
+    { id: 'navInicio', desc: 'Aquí encuentras una vista general de mi CV Digital y podrás descargar en formato PDF.' },
     { id: 'navProyectos', desc: 'Mira mis proyectos más relevantes.' },
     { id: 'navCertificados', desc: 'Aquí verás mis cursos y certificaciones.' },
     { id: 'navCvHarvard', desc: 'Puedes descargar mi CV en formato Harvard.' },
   ];
 
+  // CHATBOT PERSONALIZADO
+  chatOpen = false;
+  userMessage = '';
+  messages: { sender: string, text: string }[] = [];
+
+  private respuestas: { [key: string]: string } = {
+    'hola': '¡Hola! ¿En qué puedo ayudarte?',
+    '¿cómo estás?': 'Estoy aquí para ayudarte. ¿En qué necesitas asistencia?',
+    '¿qué servicios ofreces?': 'Ofrezco ayuda en desarrollo web, Angular, y bases de datos.',
+    'adiós': '¡Hasta luego! Si necesitas más ayuda, estaré aquí.',
+  };
+
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
-    // Si estamos en el navegador, escuchamos el evento "modalClosed"
     if (isPlatformBrowser(this.platformId)) {
       document.addEventListener('modalClosed', () => {
         const navTourDone = sessionStorage.getItem('navTourDone');
-        // Solo iniciar si no se ha hecho el tour
         if (!navTourDone) {
           this.startNavTour();
         }
@@ -37,19 +48,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    // Si quieres que se inicie el tour sin el evento, 
-    // podrías verificar aquí si ya cerraron el modal:
-    //
-    // if (isPlatformBrowser(this.platformId)) {
-    //   const navTourDone = sessionStorage.getItem('navTourDone');
-    //   const cvModalClosed = sessionStorage.getItem('cvModalClosed');
-    //   if (!navTourDone && cvModalClosed) {
-    //     this.startNavTour();
-    //   }
-    // }
-  }
+  ngOnInit() {}
 
+  // Métodos del Tour de Navegación
   startNavTour() {
     this.navTourActive = true;
     this.currentNavStep = 0;
@@ -90,5 +91,24 @@ export class AppComponent implements OnInit {
       this.navTourActive = false;
       sessionStorage.setItem('navTourDone', 'true');
     }
+  }
+
+  // Métodos del Chatbot
+  toggleChat() {
+    this.chatOpen = !this.chatOpen;
+  }
+
+  sendMessage() {
+    if (!this.userMessage.trim()) return;
+
+    const userText = this.userMessage.toLowerCase();
+    this.messages.push({ sender: 'Tú', text: this.userMessage });
+
+    setTimeout(() => {
+      const respuesta = this.respuestas[userText] || 'Aún no te entiendo.';
+      this.messages.push({ sender: 'Asistente', text: respuesta });
+    }, 500);
+
+    this.userMessage = '';
   }
 }
