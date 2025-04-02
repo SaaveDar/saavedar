@@ -388,35 +388,11 @@ footer {
 /* Estilos del botón de chat */
 .chat-button {
   position: fixed;
-  bottom: 80px;
+  bottom: 80px; /* Mantengo en la posición original */
   right: 20px;
   width: 50px;
   height: 50px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.chat-button:hover {
-  transform: scale(1.1);
-}
-
-/* Botón del Chat */
-.chat-button {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #007bff;
+  background-color: #2C3E50; /* Color más profesional y sobrio */
   color: white;
   border: none;
   border-radius: 50%;
@@ -436,20 +412,21 @@ footer {
 /* Estilos del chat emergente */
 .chat-box {
   position: fixed;
-  bottom: 150px;
-  right: 20px;
-  width: 300px;
-  background: white;
+  bottom: 40px; /* Bajé aún más el chat */
+  right: 80px; /* Muevo el chat más a la izquierda */
+  width: 320px;
+  max-height: 450px;
+  background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
 }
 
 .chat-header {
-  background: #007bff;
+  background: #2C3E50; /* Nuevo color para la cabecera */
   color: white;
-  padding: 10px;
+  padding: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -457,13 +434,14 @@ footer {
 }
 
 .chat-content {
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto;
   padding: 10px;
 }
 
 .chat-message {
   margin: 5px 0;
+  font-size: 14px;
 }
 
 .chat-input {
@@ -474,17 +452,63 @@ footer {
 
 .chat-input input {
   flex: 1;
-  padding: 5px;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .chat-input button {
   margin-left: 5px;
-  background: #007bff;
+  background: #2C3E50; /* Color consistente con el botón */
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
+}
+
+/* Estilo del botón de cerrar en la ventana del chat */
+.chat-header .close-button {
+  font-size: 14px; /* Hice el tamaño aún más pequeño */
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  width: 25px; /* Botón de cerrar más pequeño */
+  height: 25px; /* Hacemos el botón cuadrado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px; /* Bordes redondeados */
+  transition: color 0.3s;
+}
+
+.chat-header .close-button:hover {
+  background-color: #ecf0f1; /* Cambio de color de fondo al pasar el mouse */
+  color: #2C3E50; /* Cambiar el color del texto al pasar el mouse */
+}
+
+/* Estilo del botón de cerrar (X) en la ventana del chat */
+.close-btn {
+  font-size: 18px; /* Hago el tamaño del texto más pequeño */
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  width: 30px; /* Botón de cerrar más pequeño y cuadrado */
+  height: 30px; /* Hacemos el botón cuadrado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px; /* Bordes redondeados */
+  transition: color 0.3s;
+  margin-right: 5px; /* Empuja el botón al borde derecho */
+}
+
+.close-btn:hover {
+  background-color: #ecf0f1; /* Cambio de color de fondo al pasar el mouse */
+  color: #2C3E50; /* Cambiar el color del texto al pasar el mouse */
 }
