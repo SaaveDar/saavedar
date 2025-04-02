@@ -33,7 +33,70 @@ export class AppComponent implements OnInit {
   messages: { sender: string, text: string }[] = [];
  
   private respuestas: { [key: string]: string[] } = {};
-  private terminosValidos: string[] = ['hola', 'cómo estás', 'adiós', 'servicio', 'proyecto', 'certificación', 'creador', 'desarrolló'];
+  //private terminosValidos: string[] = ['hola', 'cómo estás', 'adiós', 'servicio', 'proyecto', 'certificación', 'creador', 'desarrolló'];
+  private terminosValidos: string[] = [
+    // Saludos
+    'hola', 'buenos días', 'buenas tardes', 'buenas noches', 'qué tal', 'cómo estás', 'saludos',
+  
+    // Despedidas
+    'adiós', 'hasta luego', 'chau', 'nos vemos', 'bye', 'me voy', 'gracias, hasta pronto',
+  
+    // Preguntas sobre el chatbot
+    'quién eres', 'qué haces', 'para qué sirves', 'cómo me puedes ayudar', 'quién te creó', 
+    'eres un robot', 'eres humano', 'cómo te llamas', 'cuál es tu nombre',
+  
+    // Información general
+    'qué es', 'cómo funciona', 'cómo se usa', 'para qué sirve', 'definición de', 
+    'qué significa', 'explicación de', 'ayuda', 'información', 'ejemplo de',
+  
+    // Soporte técnico
+    'soporte', 'error', 'no funciona', 'problema', 'reporte de error', 
+    'cómo solucionar', 'se cayó el sistema', 'ayuda técnica', 'mi cuenta no abre', 'bug', 'fallo',
+  
+    // Consultas sobre servicios y productos
+    'servicio', 'producto', 'proyecto', 'certificación', 'stock', 'disponibilidad', 
+    'características', 'especificaciones', 'diferencias', 'comparación', 'mejor opción', 'recomendación',
+  
+    // Preguntas sobre compras y pagos
+    'precio', 'cuánto cuesta', 'formas de pago', 'tarjeta de crédito', 'descuento', 'promoción', 
+    'envío', 'factura', 'reembolso', 'devolución', 'compra', 'pedido', 'cancelar pedido', 'cuánto vale',
+  
+    // Cuentas y accesos
+    'cuenta', 'registrarme', 'crear cuenta', 'olvidé mi contraseña', 'cómo recuperar mi cuenta', 
+    'cómo cambiar mi contraseña', 'no puedo entrar', 'error de login', 'eliminar cuenta', 'usuario',
+  
+    // Conversación informal
+    'cómo estás', 'qué haces', 'cuál es tu nombre', 'de dónde eres', 'qué día es hoy', 
+    'cuéntame un chiste', 'háblame de algo interesante', 'cuál es tu película favorita', 
+    'te gusta la música', 'dime algo divertido',
+  
+    // Horarios y disponibilidad
+    'horario de atención', 'están abiertos', 'a qué hora abren', 'cuándo cierran', 
+    'tienen atención los fines de semana', 'cuándo puedo contactarlos',
+  
+    // Preguntas sobre tecnología
+    'qué es inteligencia artificial', 'qué es un chatbot', 'qué significa machine learning', 
+    'qué es programación', 'cómo aprender a programar', 'qué lenguaje de programación me recomiendas',
+  
+    // Preguntas sobre negocios y emprendimiento
+    'cómo iniciar un negocio', 'consejos para emprendedores', 'qué es marketing digital', 
+    'cómo vender por internet', 'qué es e-commerce',
+  
+    // Preguntas de entretenimiento
+    'qué series recomiendas', 'qué películas están en tendencia', 'qué libros leer', 
+    'cuál es la mejor película del año',
+  
+    // Otras preguntas comunes
+    'cómo puedo contactarlos', 'dónde están ubicados', 'cuál es su número de teléfono', 
+    'cómo hablo con un humano', 'puedo hablar con un asesor', 'tienen atención personalizada',
+  
+    // Preguntas sobre el creador
+    'creador', 'quién desarrolló este chatbot', 'quién te programó',
+
+    // Preguntas sobre certificados
+    'certificados', 'tienes certificados?', '¿Tienes certificados?'
+  ];
+  
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {
@@ -139,43 +202,122 @@ export class AppComponent implements OnInit {
     // Corregir el mensaje antes de intentar encontrar la respuesta
     const mensajeCorregido = this.corregirPalabra(mensaje.toLowerCase());
 
-    // Responder con una respuesta personalizada para preguntas comunes como "Hola", "Cómo estás", etc.
-    if (mensajeCorregido === 'hola') {
-      return '¡Hola! ¿En qué puedo ayudarte?';
-    }
-    if (mensajeCorregido === 'cómo estás') {
-      return 'Estoy bien y tú como estas?';
-    }
-    if (mensajeCorregido === 'adiós') {
-      return '¡Hasta luego! Si necesitas más ayuda, estaré aquí.';
-    }
-    if (mensajeCorregido === 'creador') {
-      return 'Mi creador es Darley, por lo cual estoy en entrenamiento.';
-    }
+    // Respuestas personalizadas para términos válidos
+    switch (mensajeCorregido) {
+        // Saludos y despedidas
+        case 'hola':
+        case 'buenos días':
+        case 'buenas tardes':
+        case 'buenas noches':
+        case 'qué tal':
+            return '¡Hola! ¿En qué puedo ayudarte?';
 
-    // Si el mensaje no coincide con ninguna palabra válida, responde con el mensaje de entrenamiento
-    if (!this.terminosValidos.includes(mensajeCorregido)) {
-      return 'Disculpe, aún no lo entiendo. Estoy en entrenamiento.';
-    }
+        case 'cómo estás':
+            return 'Estoy bien, gracias por preguntar. ¿Y tú?';
 
-    // Si no se encuentra una respuesta, pregunta por la corrección y sugerir la correcta
-    return this.sugerirCorreccion(mensajeCorregido);
-  }
+        case 'adiós':
+        case 'hasta luego':
+        case 'chau':
+        case 'bye':
+            return '¡Hasta luego! Si necesitas más ayuda, estaré aquí.';
+
+        // Preguntas sobre el chatbot
+        case 'quién eres':
+        case 'qué haces':
+        case 'para qué sirves':
+            return 'Soy un asistente virtual diseñado para ayudarte con tus consultas. ¿En qué puedo asistirte hoy?';
+
+        case 'quién te creó':
+        case 'eres un robot':
+        case 'eres humano':
+            return 'Soy un chatbot creado por Darley, programado para responder tus preguntas.';
+
+        // Información sobre el portafolio
+        case 'portafolio':
+        case 'trabajos':
+        case 'proyectos':
+            return 'Mi portafolio digital incluye proyectos desarrollados, los cuales están alojados en mi repositorio de GitHub. Puedes verlos en mi sitio web.';
+
+        case 'certificados':
+        case 'tienes certificados?':  
+            return 'En mi portafolio puedes ver los certificados de los cursos que he realizado, todos los cuales están disponibles en línea.';
+
+        case 'cv':
+        case 'currículum':
+            return 'Tengo mi CV disponible en dos formatos: uno tradicional y otro en el formato Harvard. Puedes consultarlos en mi sitio web también.';
+
+        // Información general
+        case 'qué es':
+        case 'cómo funciona':
+        case 'cómo se usa':
+            return 'Depende del contexto. ¿Sobre qué te gustaría saber más?';
+
+        // Soporte técnico
+        case 'soporte':
+        case 'error':
+        case 'no funciona':
+        case 'problema':
+            return 'Lo siento por el inconveniente. ¿Podrías describirme más el problema para ayudarte mejor?';
+
+        // Consultas sobre servicios y productos
+        case 'servicio':
+        case 'producto':
+        case 'proyecto':
+            return '¿Podrías darme más detalles sobre qué servicio o producto te interesa?';
+
+        case 'certificación':
+            return 'Las certificaciones pueden variar. ¿Sobre cuál necesitas información?';
+
+        // Compras y pagos
+        case 'precio':
+        case 'cuánto cuesta':
+            return 'Los precios pueden variar. ¿Sobre qué producto o servicio necesitas saber?';
+
+        case 'formas de pago':
+        case 'tarjeta de crédito':
+            return 'Aceptamos varias formas de pago, incluyendo tarjetas de crédito y débito. ¿Necesitas más detalles?';
+
+        case 'descuento':
+        case 'promoción':
+            return 'Actualmente tenemos algunas promociones disponibles. ¿Quieres más información sobre alguna en particular?';
+
+        // Conversación informal
+        case 'qué haces':
+            return 'Estoy aquí para ayudarte a responder tus preguntas. ¿Cómo puedo asistirte?';
+
+        case 'cuéntame un chiste':
+            return '¡Claro! ¿Por qué los pájaros no usan WhatsApp? Porque ya tienen Twitter. 😆';
+
+        // Horarios y disponibilidad
+        case 'horario de atención':
+        case 'están abiertos':
+            return 'Nuestro horario de atención es de lunes a viernes de 9:00 a.m. a 6:00 p.m. ¿Necesitas ayuda con algo más?';
+
+        // Preguntas sobre el creador
+        case 'creador':
+        case 'quién desarrolló este chatbot':
+            return 'Fui desarrollado por Darley. Aún estoy en proceso de aprendizaje. 😊';
+
+        default:
+            return 'Disculpa, aún no entiendo esa consulta. Estoy en entrenamiento.';
+    }
+}
 
   // Modifica sendMessage para usar la función dinámica
   sendMessage() {
-    if (!this.userMessage.trim()) return;
+  if (!this.userMessage.trim()) return;
 
-    const userText = this.userMessage.toLowerCase();
-    this.messages.push({ sender: 'Tú', text: this.userMessage });
+  const userText = this.userMessage.toLowerCase();
+  this.messages.push({ sender: 'Tú', text: `${this.userMessage}: <strong>Tú</strong>` });
 
-    setTimeout(() => {
-      const respuesta = this.getRespuesta(userText);
-      this.messages.push({ sender: 'Asistente', text: respuesta });
-    }, 500);
+  setTimeout(() => {
+    const respuesta = this.getRespuesta(userText);
+    this.messages.push({ sender: 'Asistente', text: `<strong>Asistente</strong>: ${respuesta}` });
+  }, 500);
 
-    this.userMessage = '';
-  }
+  this.userMessage = '';
+}
+
 
   // Método para sugerir correcciones de forma automática y responder sin confirmación
   sugerirCorreccion(mensaje: string): string {

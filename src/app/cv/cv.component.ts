@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import confetti from 'canvas-confetti';
+import { position } from 'html2canvas/dist/types/css/property-descriptors/position';
 
 @Component({
   selector: 'app-cv',
@@ -299,7 +300,7 @@ export class CvComponent implements OnInit {
         'Reporting Module',
         'Schedule Permissions Module: No Access, All Day Access and by Range of Hours',
         'Report Maintainer Module: Crystal Report and DataSet',
-        'Scripts: views, stored procedures in SQL Server', 'Scripts: views, stored procedures in SQL Server', 'Scripts: views, stored procedures in SQL Server',
+        'Scripts: views, stored procedures in SQL Server', 
       ],
     },
     {
@@ -343,10 +344,10 @@ export class CvComponent implements OnInit {
       ],
     },
     {
-      cargo: 'SYSTEMS ASSISTANT/AUXILIARY',  
-      empresa: 'RED DE SALUD GRAN CHIMÚ',  
-      fecha: 'AUGUST 2021 - JANUARY 2023',  
-      detalles: [  
+      position: 'SYSTEMS ASSISTANT/AUXILIARY',  
+      company: 'RED DE SALUD GRAN CHIMÚ',  
+      date: 'AUGUST 2021 - JANUARY 2023',  
+      details: [  
         'Provided installation support and issue resolution for users in: SISMED, SIEN ACCREDITATION, SIGA, SIAF (client).',  
         'Network cabling in new connection points.',  
         'Development and support for the institution’s web portal.',  
@@ -354,20 +355,18 @@ export class CvComponent implements OnInit {
         'Developed a beta version of a web-based medical appointment system for Cascas Hospital.',  
         'Managed users for digital signature authentication.',  
       ],  
-
     },
     {
-      cargo: 'PROFESSIONAL INTERN',  
-      empresa: 'SUNARP TRUJILLO',  
-      fecha: 'MARCH - AUGUST 2021',  
-      detalles: [  
+      position: 'PROFESSIONAL INTERN',  
+      company: 'SUNARP TRUJILLO',  
+      date: 'MARCH - AUGUST 2021',  
+      details: [  
         'Technical support at the software level (Registry Unit, Vehicle, and Property Registration) and hardware.',  
         'Updated the display of records.',  
         'Configured IPs and domains on new computer equipment.',  
         'Managed exit sheets.',  
         'User and file administration on the domain network.',  
       ],  
-
     },
   ];
 }

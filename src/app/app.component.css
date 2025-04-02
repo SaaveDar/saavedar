@@ -444,6 +444,22 @@ footer {
   font-size: 14px;
 }
 
+/* Alineación de los mensajes */
+.user-message {
+  text-align: right; /* Mensajes del usuario a la derecha */
+  background-color: #ecf0f1; /* Fondo gris para los mensajes del usuario */
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.assistant-message {
+  text-align: left; /* Mensajes del asistente a la izquierda */
+  background-color: #f9f9f9; /* Fondo más claro para los mensajes del asistente */
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* Estilo de la entrada de texto */
 .chat-input {
   display: flex;
   padding: 10px;

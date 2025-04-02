@@ -33,7 +33,7 @@ export class CvHarvardComponent {
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
   
       pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
-      pdf.save(`CurriculumVitae_EVANGELISTA_SAAVEDRA_${year}.pdf`);
+      pdf.save(`CurriculumVitae_EVANGELISTA_SAAVEDRA_${year}_modelharvard.pdf`);
     });
   }
   
