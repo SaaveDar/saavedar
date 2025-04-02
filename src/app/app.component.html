@@ -39,20 +39,20 @@
 
 
 <!-- Botón de Chat -->
+<!-- Botón de Chat -->
 <button class="chat-button" (click)="toggleChat()">💬</button>
 
 <!-- Chat Emergente -->
 <div class="chat-box" *ngIf="chatOpen">
   <div class="chat-header">
     <span>Asistente Virtual</span>
-    <button class="close-btn" (click)="toggleChat()">✖</button>
+    <button class="close-btn" (click)="closeChat()">✖</button>
   </div>
   <div class="chat-content">
     <div *ngFor="let msg of messages" class="chat-message" 
-     [ngClass]="{'user-message': msg.sender === 'Tú', 'assistant-message': msg.sender === 'Asistente'}">
+      [ngClass]="{'user-message': msg.sender === 'Tú', 'assistant-message': msg.sender === 'Asistente'}">
       <div class="message" [innerHTML]="msg.text"></div>
     </div>
-
   </div>
   <div class="chat-input">
     <input type="text" [(ngModel)]="userMessage" (keyup.enter)="sendMessage()" placeholder="Escribe tu pregunta..." />

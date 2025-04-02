@@ -149,11 +149,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // Métodos del Chatbot
-  toggleChat(): void {
-    this.chatOpen = !this.chatOpen; // Alterna entre abrir y cerrar
-  }
-
   // Método para calcular la distancia de Levenshtein entre dos cadenas
   calcularLevenshtein(a: string, b: string): number {
     const tmp: number[][] = [];
@@ -223,7 +218,6 @@ export class AppComponent implements OnInit {
 
         // Preguntas sobre el chatbot
         case 'quién eres':
-        case 'qué haces':
         case 'para qué sirves':
             return 'Soy un asistente virtual diseñado para ayudarte con tus consultas. ¿En qué puedo asistirte hoy?';
 
@@ -301,22 +295,33 @@ export class AppComponent implements OnInit {
         default:
             return 'Disculpa, aún no entiendo esa consulta. Estoy en entrenamiento.';
     }
-}
+  }
 
-  // Modifica sendMessage para usar la función dinámica
-  sendMessage() {
-  if (!this.userMessage.trim()) return;
 
-  const userText = this.userMessage.toLowerCase();
-  this.messages.push({ sender: 'Tú', text: `${this.userMessage}: <strong>Tú</strong>` });
+  toggleChat(): void {
+    // Aquí se alterna el estado del chat, pero esto solo abrirá o cerrará el chat cuando el usuario haga clic en el botón
+    this.chatOpen = !this.chatOpen;
+  }
 
-  setTimeout(() => {
-    const respuesta = this.getRespuesta(userText);
-    this.messages.push({ sender: 'Asistente', text: `<strong>Asistente</strong>: ${respuesta}` });
-  }, 500);
+  // Método para cerrar el chat específicamente al hacer clic en el botón de cierre
+  closeChat(): void {
+    this.chatOpen = false; // Solo se cierra cuando el usuario hace clic en el botón de cierre
+  }
 
-  this.userMessage = '';
-}
+  // Enviar mensaje
+  sendMessage(): void {
+    if (!this.userMessage.trim()) return;
+
+    const userText = this.userMessage.toLowerCase();
+    this.messages.push({ sender: 'Tú', text: `${this.userMessage}: <strong>Tú</strong>` });
+
+    setTimeout(() => {
+      const respuesta = this.getRespuesta(userText);
+      this.messages.push({ sender: 'Asistente', text: `<strong>Asistente</strong>: ${respuesta}` });
+    }, 500);
+
+    this.userMessage = ''; // Limpia el input después de enviar el mensaje
+  }
 
 
   // Método para sugerir correcciones de forma automática y responder sin confirmación
