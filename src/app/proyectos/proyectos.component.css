@@ -130,3 +130,20 @@ h1 i {
 }
 
 
+.tech-icons {
+  display: flex;
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente (si hay altura fija) */
+  gap: 2px;               /* Espacio entre imágenes */
+  margin-top: 20px;        /* Ajusta según necesites */
+}
+
+.tech-icons img[alt="PHP"],
+.tech-icons img[alt="MySQL"],
+.tech-icons img[alt="JS"] {
+  filter: drop-shadow(0px 0px 2px white);
+}
+
+.tech-icons img {
+  filter: drop-shadow(0px 0px 2px white);
+}
