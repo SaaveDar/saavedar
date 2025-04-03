@@ -1,14 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-<div class="language-switcher">
-  <button class="lang-btn es" (click)="toggleLanguage('es')">
-    <img src="https://flagcdn.com/w40/es.png" alt="ES"> Español
-  </button> 
-  <button class="lang-btn en" (click)="toggleLanguage('en')">
-    <img src="https://flagcdn.com/w40/gb.png" alt="EN"> English
-  </button>
-</div>
-
 <!-- Ventana Modal -->
 <div *ngIf="showModal" class="modal-overlay">
   <div class="modal-container">
@@ -29,121 +20,167 @@
   </div>
 </div>
 
-<div #cv id="cv" class="cv-container" [class.flip]="flipping">
-  <div *ngIf="language === 'es'" class="cv-content">
-    <div class="cv-layout">
-      <div class="left-panel">
-        <div class="profile">
-          <img src="assets/daes_foto.jpg" alt="Foto de perfil">
-          <h2>DARLEY A. EVANGELISTA SAAVEDRA</h2>
-          <p>Desarrollador, Analista de datos y redes</p>
-          <p>CIP: 311074</p>
-          <p>ING. DE SISTEMAS</p>
-        </div>
-        <div class="Object">
-          <h3>OBJETIVO</h3>
-          <p>Ingeniero de Sistemas titulado con sólidos conocimientos en desarrollo de software, bases de datos y gestión de proyectos tecnológicos. Busco una oportunidad para aplicar mis habilidades en análisis, diseño e implementación de soluciones informáticas, contribuyendo a la optimización de procesos en una empresa innovadora. Me destaco por mi capacidad de resolución de problemas, trabajo en equipo y adaptación a nuevas tecnologías.</p>
-        </div>
-        <div class="contact">
-          <h3>CONTACTO</h3>
-          <p>📞 {{ contacto.telefono }}</p>
-          <p>
-            <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" 
-                 alt="Gmail" width="11" height="12">
-            {{ contacto.email }}
-          </p>
-          <p>🔗 <a href="{{ contacto.linkedin }}" target="_blank" style="color: #0077b5; text-decoration: none;">LinkedIn</a></p>
-          <p>📍 {{ contacto.direccion }}</p>
-        </div>
-        <div id="educacion" class="education">
-          <h3>EDUCACIÓN</h3>
-          <ul>
-            <li *ngFor="let edu of educacion">{{ edu }}</li>
-          </ul>
-        </div>
-        <div class="skills">
-          <h3>HABILIDADES</h3>
-          <ul>
-            <li *ngFor="let habilidad of habilidades">{{ habilidad }}</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="right-panel">
-        <div id="experiencia">
-          <h2>EXPERIENCIA</h2>
-          <div *ngFor="let job of experiencia" class="job">
-            <p class="cargo-fecha">
-              <strong class="cargo cargo-ul">{{ job.cargo }}</strong>  <span class="fecha">{{ job.fecha }}</span>
-            </p>
-            <p class="empresa">{{ job.empresa }}</p>
-            <ul class="detalles-ul">
-              <li *ngFor="let detalle of job.detalles">{{ detalle }}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div *ngIf="language === 'en'">
-    <div class="cv-layout">
-      <div class="left-panel">
-        <div class="profile">
-          <img src="assets/daes_foto.jpg" alt="Foto de perfil">
-          <h2>DARLEY A. EVANGELISTA SAAVEDRA</h2>
-          <p>Developer, Data and Network Analyst</p>
-          <p>CIP: 311074</p>
-          <p>Systems Engineer</p>
-        </div>
-        <div class="Object">
-          <h3>OBJECTIVE</h3>
-          <p>Degree in Systems Engineering with solid knowledge in software development, databases and technology project management. I am looking for an opportunity to apply my skills in analysis, design and implementation of IT solutions, contributing to the optimization of processes in an innovative company. I stand out for my ability to solve problems, teamwork and adaptation to new technologies.</p>
-        </div>
-        <div class="contact">
-          <h3>CONTACT</h3>
-          <p>📞 {{ contacto.telefono }}</p>
-          <p>
-            <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" 
-                 alt="Gmail" width="11" height="12">
-            {{ contacto.email }}
-          </p>
-          <p>🔗 <a href="{{ contacto.linkedin }}" target="_blank" style="color: #0077b5; text-decoration: none;">LinkedIn</a></p>
-          <p>📍 {{ contacto.direccion }}</p>
-        </div>
-        <div id="educacion" class="education">
-          <h3>EDUCATION</h3>
-          <ul>
-            <li *ngFor="let edu of educacionEn">{{ edu }}</li>
-          </ul>
-        </div>
-        <div class="skills">
-          <h3>SKILLS</h3>
-          <ul>
-            <li *ngFor="let habilidadEn of habilidadesEn">{{ habilidadEn }}</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="right-panel">
-        <div id="experiencia">
-          <h2>EXPERIENCE</h2>
-          <div *ngFor="let job of experienciaEn" class="job">
-            <p class="cargo-fecha">
-              <strong class="cargo cargo-ul">{{ job.position }}</strong>  <span class="fecha">{{ job.date }}</span>
-            </p>
-            <p class="empresa">{{ job.company }}</p>
-            <ul class="detalles-ul">
-              <li *ngFor="let details of job.details">{{ details }}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- Sección Sobre Mí -->
+<div class="about-me">
+  <div class="about-image">
+    <img src="assets/daes_foto.jpg" alt="Darley Evangelista">
+  </div>
+  <div class="about-text">
+    <h2>Darley Evangelista</h2>
+    <p>
+      Ingeniero de Sistemas titulado con sólidos conocimientos en desarrollo de software, 
+      bases de datos y gestión de proyectos tecnológicos. Busco una oportunidad para aplicar mis habilidades 
+      en análisis, diseño e implementación de soluciones informáticas, contribuyendo a la optimización de procesos 
+      en una empresa innovadora. Me destaco por mi capacidad de resolución de problemas, trabajo en equipo y adaptación a nuevas tecnologías.
+    </p>
   </div>
 </div>
 
-<button (click)="descargarPDF()">Descargar CV</button>
+<!-- Galería de GIFs -->
+<div class="gif-gallery">
+  <img src="assets/sqlserver.png" alt="GIF 3">
+  <img src="assets/gif_dev.gif" alt="GIF 1">
+  <img src="assets/icons8-sql-64.png" alt="GIF 3">
+  <img src="assets/gif_js.gif" alt="GIF 2">
+  <img src="assets/gif_linux.gif" alt="GIF 3">
+  <img src="assets/gif_bd.gif" alt="GIF 3">
+  <img src="assets/gif_git.gif" alt="GIF 3">
+  <img src="assets/icons8-mysql-48.png" alt="GIF 3">
+  <img src="assets/gif_graficos.gif" alt="GIF 3">
+  <img src="assets/gif_html.gif" alt="GIF 3">
+  <img src="assets/visual_studio_code.png" alt="GIF 3">
+  <!-- Agrega más imágenes según necesites -->
+</div>
+
+<!-- Botón para abrir la ventana modal -->
+<button class="open-modal-btn" (click)="abrirModal()">Ver CV</button>
+
+<!-- Ventana Modal -->
+<div class="modal-overlay" *ngIf="modalOpen">
+  <div class="modal-content">
+    <button class="close-modal-btn" (click)="cerrarModal()">✖</button>
+
+    <!-- Contenido del CV dentro del modal -->
+    <div class="language-switcher">
+      <button class="lang-btn es" (click)="toggleLanguage('es')">
+        <img src="https://flagcdn.com/w40/es.png" alt="ES"> Español
+      </button> 
+      <button class="lang-btn en" (click)="toggleLanguage('en')">
+        <img src="https://flagcdn.com/w40/gb.png" alt="EN"> English
+      </button>
+    </div>
+
+    <div #cv id="cv" class="cv-container" [class.flip]="flipping">
+      <div *ngIf="language === 'es'" class="cv-content">
+        <div class="cv-layout">
+          <div class="left-panel">
+            <div class="profile">
+              <img src="assets/daes_foto.jpg" alt="Foto de perfil">
+              <h2>DARLEY A. EVANGELISTA SAAVEDRA</h2>
+              <p>Desarrollador, Analista de datos y redes</p>
+              <p>CIP: 311074</p>
+              <p>ING. DE SISTEMAS</p>
+            </div>
+            <div class="Object">
+              <h3>OBJETIVO</h3>
+              <p>Ingeniero de Sistemas titulado con sólidos conocimientos en desarrollo de software, bases de datos y gestión de proyectos tecnológicos...</p>
+            </div>
+            <div class="contact">
+              <h3>CONTACTO</h3>
+              <p>📞 {{ contacto.telefono }}</p>
+              <p>
+                <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" 
+                     alt="Gmail" width="11" height="12">
+                {{ contacto.email }}
+              </p>
+              <p>🔗 <a href="{{ contacto.linkedin }}" target="_blank" style="color: #0077b5; text-decoration: none;">LinkedIn</a></p>
+              <p>📍 {{ contacto.direccion }}</p>
+            </div>
+            <div id="educacion" class="education">
+              <h3>EDUCACIÓN</h3>
+              <ul>
+                <li *ngFor="let edu of educacion">{{ edu }}</li>
+              </ul>
+            </div>
+            <div class="skills">
+              <h3>HABILIDADES</h3>
+              <ul>
+                <li *ngFor="let habilidad of habilidades">{{ habilidad }}</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="right-panel">
+            <div id="experiencia">
+              <h2>EXPERIENCIA</h2>
+              <div *ngFor="let job of experiencia" class="job">
+                <p class="cargo-fecha">
+                  <strong class="cargo cargo-ul">{{ job.cargo }}</strong>  
+                  <span class="fecha">{{ job.fecha }}</span>
+                </p>
+                <p class="empresa">{{ job.empresa }}</p>
+                <ul class="detalles-ul">
+                  <li *ngFor="let detalle of job.detalles">{{ detalle }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Versión en inglés -->
+      <div *ngIf="language === 'en'">
+        <div class="cv-layout">
+          <div class="left-panel">
+            <div class="profile">
+              <img src="assets/daes_foto.jpg" alt="Foto de perfil">
+              <h2>DARLEY A. EVANGELISTA SAAVEDRA</h2>
+              <p>Developer, Data and Network Analyst</p>
+              <p>CIP: 311074</p>
+              <p>Systems Engineer</p>
+            </div>
+            <div class="Object">
+              <h3>OBJECTIVE</h3>
+              <p>Degree in Systems Engineering with solid knowledge in software development, databases and technology project management...</p>
+            </div>
+            <div id="educacion" class="education">
+              <h3>EDUCATION</h3>
+              <ul>
+                <li *ngFor="let edu of educacionEn">{{ edu }}</li>
+              </ul>
+            </div>
+            <div class="skills">
+              <h3>SKILLS</h3>
+              <ul>
+                <li *ngFor="let habilidadEn of habilidadesEn">{{ habilidadEn }}</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="right-panel">
+            <div id="experiencia">
+              <h2>EXPERIENCE</h2>
+              <div *ngFor="let job of experienciaEn" class="job">
+                <p class="cargo-fecha">
+                  <strong class="cargo cargo-ul">{{ job.position }}</strong>  
+                  <span class="fecha">{{ job.date }}</span>
+                </p>
+                <p class="empresa">{{ job.company }}</p>
+                <ul class="detalles-ul">
+                  <li *ngFor="let details of job.details">{{ details }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="descargarPDF()">Descargar CV</button>
+  </div>
+</div>
+
 
 <style>
 .cv-layout {

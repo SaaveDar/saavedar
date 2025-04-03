@@ -1,9 +1,9 @@
 <nav class="navbar">
   <ul>
-    <li id="navInicio"><a routerLink="/">Inicio</a></li>
+    <li id="navInicio"><a routerLink="/">Sobre mí</a></li>
     <li id="navProyectos"><a routerLink="/proyectos">Proyectos</a></li>
-    <li id="navCertificados"><a routerLink="/certificados">Certificados</a></li>
-    <li id="navCvHarvard"><a routerLink="/cv-harvard">CV Harvard</a></li>
+    <li id="navCertificados"><a routerLink="/certificados">Cursos & Certificados</a></li>
+    <li id="navCvHarvard"><a routerLink="/cv-harvard">Curriculum Vitae</a></li>
   </ul>
 </nav>
 
@@ -39,12 +39,13 @@
 
 
 <!-- Botón de Chat -->
-<!-- Botón de Chat -->
 <button class="chat-button" (click)="toggleChat()">💬</button>
 
 <!-- Chat Emergente -->
 <div class="chat-box" *ngIf="chatOpen">
   <div class="chat-header">
+    <!--<span>🤖 Asistente Virtual</span>-->
+    <img src="assets/gif2.gif" alt="Asistente" class="chat-avatar"> 
     <span>Asistente Virtual</span>
     <button class="close-btn" (click)="closeChat()">✖</button>
   </div>

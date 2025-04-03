@@ -23,6 +23,18 @@ export class CvComponent implements OnInit {
   language: string = 'es'; // Idioma predeterminado
   flipping: boolean = false; // Controla la animación de voltear
   
+
+  modalOpen: boolean = false;
+
+  abrirModal() {
+    this.modalOpen = true;
+  }
+
+  cerrarModal() {
+    this.modalOpen = false;
+  }
+
+
   constructor(@Inject(PLATFORM_ID) private platformId: any) {}
 
   ngOnInit() {
