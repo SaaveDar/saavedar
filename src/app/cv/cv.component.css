@@ -746,7 +746,7 @@ h2 {
   transform: translateY(-50%); /* Asegura el centrado perfecto */
   width: 50px;
   height: 90px;
-  background-image: url('/assets/carrito.gif');
+
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
