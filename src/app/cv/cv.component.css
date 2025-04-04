@@ -796,9 +796,7 @@ h2 {
 
 /* Media Queries */
 @media (max-width: 768px) {
-  .timeline-container {
-    height: 130px;
-  }
+
   .timeline {
     width: 90%;
     height: 8px;
@@ -836,7 +834,8 @@ h2 {
 
 @media (max-width: 480px) {
   .timeline-container {
-    height: 120px;
+    height: 220px;
+
   }
   .timeline {
     width: 90%;
@@ -852,7 +851,7 @@ h2 {
     height: 10px;
   }
   .timeline-labels {
-    top: 70px; /* Bajé etiquetas */
+    top: 90px; /* Bajé etiquetas */
   }
 }
 
