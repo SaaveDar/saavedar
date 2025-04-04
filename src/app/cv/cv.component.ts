@@ -11,7 +11,7 @@ import { position } from 'html2canvas/dist/types/css/property-descriptors/positi
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './cv.component.html',
-  styleUrls: ['./cv.component.css']
+  styleUrls: ['./cv.component.css', './cv.component_2.css']
 })
 
 
