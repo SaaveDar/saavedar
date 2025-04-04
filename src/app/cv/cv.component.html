@@ -29,16 +29,25 @@
   <div class="about-text">
     <h2>Darley Evangelista</h2>
     <p>
-      Ingeniero de Sistemas titulado con sólidos conocimientos en desarrollo de software, 
-      bases de datos y gestión de proyectos tecnológicos. Busco una oportunidad para aplicar mis habilidades 
-      en análisis, diseño e implementación de soluciones informáticas, contribuyendo a la optimización de procesos 
-      en una empresa innovadora. Me destaco por mi capacidad de resolución de problemas, trabajo en equipo y adaptación a nuevas tecnologías.
+      Soy analista de sistemas y desarrollador web, apasionado por crear soluciones innovadoras que optimicen procesos y potencien la transformación digital.
+      <span *ngIf="!showMore">
+        ... <a (click)="toggleShowMore()" class="toggle-text">Ver más</a>
+      </span>
+      <span *ngIf="showMore">
+        Con una sólida formación en ingeniería de sistemas, he acumulado experiencia en el desarrollo de aplicaciones, análisis de sistemas y gestión de proyectos tecnológicos. Me destaco por mi capacidad para resolver problemas complejos, trabajar en equipo y adaptarme rápidamente a nuevos retos y tecnologías.
+        <a (click)="toggleShowMore()" class="toggle-text">Ver menos</a>
+      </span>
+      <!-- Botón para abrir la ventana modal -->
+      <button class="open-modal-btn" (click)="abrirModal()">Ver CV</button>
     </p>
   </div>
 </div>
 
+
+
 <!-- Galería de GIFs -->
 <div class="gif-gallery">
+  <h3>TECNOLOGIAS Y HERRAMIENTAS DE TRABAJO</h3>
   <img src="assets/sqlserver.png" alt="Base de Datos SQL SERVER" title="Base de Datos SQL SERVER">
   <img src="assets/gif_dev.gif" alt="Desarrollador" title="Desarrollador">
   <img src="assets/icons8-sql-64.png" alt="TRANSACT SQL" title="TRANSACT SQL">
@@ -56,8 +65,37 @@
   <!-- Agrega más imágenes según necesites -->
 </div>
 
-<!-- Botón para abrir la ventana modal -->
-<button class="open-modal-btn" (click)="abrirModal()">Ver CV</button>
+
+<!-- Sección de Línea de Tiempo -->
+<div class="timeline-container">
+  <h2>MI EXPERIENCIA EN UNA LINEA DE TIEMPO</h2>
+  <!-- Contenedor para permitir el desplazamiento horizontal -->
+  <div class="timeline-wrapper">
+    <!-- Añadimos el evento mousemove aquí para capturar el movimiento sobre toda la línea -->
+    <div class="timeline" (mousemove)="onMouseMove($event)" [style.width]="calculateTimelineDynamicWidth() + 'px'">
+      <div class="timeline-track"></div>
+      <!-- Puntos en cada año -->
+      <div *ngFor="let job of experiencia_carrito"
+           class="timeline-point"
+           [style.left]="calculateLabelPosition(job) + 'px'">
+      </div>
+      <!-- Carrito -->
+      <div class="timeline-car" [style.left]="carPosition + 'px'"></div>
+    </div>
+  </div>
+  <!-- Etiquetas con Año, Cargo y Empresa (AHORA DEBAJO DEL PUNTO) -->
+  <div class="timeline-labels">
+    <div *ngFor="let job of experiencia_carrito"
+         class="label"
+         [style.left]="calculateLabelPosition(job) + 'px'"
+         [style.top]="'30px'"> <!-- Ajustamos la posición debajo del punto -->
+      <span class="year">{{ job.fecha }}</span>
+      <span class="position">{{ job.cargo }}</span>
+      <span class="company">{{ job.descripcion }}</span>
+    </div>
+  </div>
+</div>
+
 
 <!-- Ventana Modal -->
 <div class="modal-overlay" *ngIf="modalOpen">

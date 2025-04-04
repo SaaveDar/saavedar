@@ -16,6 +16,75 @@ import { position } from 'html2canvas/dist/types/css/property-descriptors/positi
 
 
 export class CvComponent implements OnInit {
+  showMore: boolean = false;
+
+  toggleShowMore(): void {
+    this.showMore = !this.showMore;
+  }
+  // Suponiendo que 'experiencia_carrito' es un arreglo de trabajos o experiencias
+    // Definimos la propiedad para almacenar el ancho de la línea de tiempo
+  timelineWidth: number = 0;
+
+  // Referencia al contenedor de la línea de tiempo usando ViewChild
+  @ViewChild('timeline') timelineRef!: ElementRef;
+
+    experiencia_carrito : any[] = [
+      { fecha: '2019-2019', descripcion: 'HOSPITAL BELEN DE TRUJILLO', cargo: 'PRACTICANTE PREPROFESIONAL' },
+      { fecha: '2021-2021', descripcion: 'SUNARP N° V -TRUJILLO', cargo: 'PRACTICANTE PROFESIONAL' },
+      { fecha: '2021-2023', descripcion: 'RED DE SALUD GRAN CHIMÚ', cargo: 'ASISTENTE/AUXILIAR DE SISTEMAS' },
+      { fecha: '2023-2023', descripcion: 'RED DE SALUD GRAN CHIMÚ - FARMACIA ', cargo: 'INFORMÁTICO SISMED' },
+      { fecha: '2024-2024', descripcion: 'UNIVERSIDAD PRIVADA ANTENOR ORREGO', cargo: 'ASISTENTE DE BASE DE DATOS' },
+      { fecha: '2024-2024', descripcion: 'IESTP LAREDO', cargo: 'DOCENTE' },
+      { fecha: '2024-2024', descripcion: 'RAPI SISTEMA SAC', cargo: 'DESARROLLADOR' },
+      { fecha: '2025-2025', descripcion: 'INDEPENDIENTE', cargo: 'DESARROLLADOR FREELANCE' },
+      // Añadir más elementos si es necesario
+    ];
+
+  //carPosition: number = 0; // Posición inicial del carrito
+  carPosition: number = 40;
+
+  // Este método se ejecutará cuando el mouse se mueva
+  onMouseMove(event: MouseEvent): void {
+    // Verificamos si el evento proviene de la línea de tiempo o sus elementos hijos
+    const timelineContainer = document.querySelector('.timeline') as HTMLElement;
+    if (!timelineContainer.contains(event.target as Node)) {
+      return; // Si el mouse no está sobre la línea o sus elementos, no hacemos nada
+    }
+    
+    const timelineRect = timelineContainer.getBoundingClientRect();
+    const mouseX = event.clientX - timelineRect.left; // Posición horizontal del mouse relativa a la línea
+    
+    // Calculamos la posición del carrito en función del mouse
+    const maxPosition = timelineContainer.offsetWidth - 50; // 50px es el ancho del carrito
+    const carPosition = Math.min(Math.max(mouseX, 0), maxPosition);
+    
+    this.carPosition = carPosition; // Actualizamos la posición del carrito
+  }
+
+  // Este método calculará la posición de cada etiqueta de fecha
+  // Calcula la posición horizontal de cada punto (el primer punto a la izquierda)
+  calculateLabelPosition(job: any): number {
+    const index = this.experiencia_carrito.indexOf(job);
+    const sideMargin = 40;           // Margen lateral
+    const segmentWidth = 180;        // Espacio fijo entre puntos
+    return sideMargin + index * segmentWidth;
+  }
+
+  // Calcula el ancho total de la línea para que termine en el último punto amarillo
+  calculateTimelineDynamicWidth(): number {
+    const sideMargin = 40;
+    const segmentWidth = 180;
+    if (this.experiencia_carrito.length === 0) {
+      return sideMargin * 2;
+    }
+    return sideMargin * 2 + (this.experiencia_carrito.length - 1) * segmentWidth;
+  }
+
+
+  
+
+
+
   @ViewChild('cv', { static: false }) cv!: ElementRef;
 
   showModal: boolean = false; // Modal de bienvenida
@@ -37,6 +106,7 @@ export class CvComponent implements OnInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {}
 
+  
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       // Verificamos si ya se mostró el modal de bienvenida
@@ -150,6 +220,7 @@ export class CvComponent implements OnInit {
       pdf.save(`CurriculumVitae_EVANGELISTA_SAAVEDRA_DARLEY_A_${year}.pdf`);
     });
   }
+  
   
   
   contacto = {

@@ -656,6 +656,16 @@ html, body {
   flex-wrap: wrap;     /* Permite que se ajusten en varias líneas en dispositivos pequeños */
 }
 
+/* Estilo para el título centrado */
+.gif-gallery h3 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
 .gif-gallery img {
   max-width: 50px;    /* Ajusta el tamaño de cada GIF */
   width: 100%;
@@ -669,3 +679,181 @@ html, body {
 .gif-gallery img:hover {
   transform: scale(1.05); /* Efecto hover: aumenta ligeramente el tamaño */
 }
+
+/* sobre mi  */
+.toggle-text {
+  color: yellow;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+
+/* Hacer que el h2 sea estático */
+h2 {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  padding: 10px 0;
+  margin-top: 0;
+  color: white; /* Color de texto blanco */
+}
+
+/* Línea de tiempo */
+.timeline-container {
+  position: relative;
+  width: 100%;
+  height: 260px; /* Aumenté la altura total */
+  margin-top: 50px; /* Bajé toda la línea de tiempo */
+  background-color: #002147;
+  padding: 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow-x: auto;  /* Permite desplazamiento horizontal */
+  overflow-y: hidden; /* Evita desplazamiento vertical */
+}
+
+/* Línea de tiempo */
+.timeline {
+  position: relative;
+  width: 70%;
+  height: 15px;
+  background-color: #FFFFFF;
+  margin: 60px auto; /* Bajé más la línea */
+  border-radius: 5px;
+  margin-top: 2%;  /* AQUI SE SUBE LA LINEA DE TIEMPO  */
+  min-width: 100%;  /* Mínimo ancho del contenedor padre */
+
+}
+
+
+/* Puntos */
+.timeline-point {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #FFD700;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #FFFFFF;
+}
+
+/* Carrito */
+.timeline-car {
+  position: absolute;
+  top: 15%; /* Centra verticalmente el carrito respecto a la línea */
+  transform: translateY(-50%); /* Asegura el centrado perfecto */
+  width: 50px;
+  height: 90px;
+  background-image: url('/assets/carrito.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: left 0.4s ease-in-out; /* Movimiento más suave */
+}
+
+
+/* Etiquetas */
+.timeline-labels {
+  position: absolute;
+  top: 100px; /* Bajé las etiquetas para alinearlas con la nueva posición */
+  width: 100%;
+  right: -20px;
+  margin-top: -1%;
+
+  width: max-content;
+  min-width: 100%;
+}
+
+.label {
+  position: absolute;
+  top: 50px;
+  font-size: 14px;
+  color: #FFFFFF;
+  text-align: center;
+  width: 120px;
+  transform: translateX(-50%);
+}
+
+.label .year {
+  font-weight: bold;
+  display: block;
+}
+
+.label .position {
+  font-size: 12px;
+  display: block;
+  color: #FFD700;
+}
+
+.label .company {
+  font-size: 12px;
+  display: block;
+  color: #CCCCCC;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .timeline-container {
+    height: 130px;
+  }
+  .timeline {
+    width: 90%;
+    height: 8px;
+    margin: 50px auto; /* Ajusté margen */
+
+    min-width: 100%;
+    width: max-content;
+    /* Si tienes más de 5 elementos, esta fórmula asegura suficiente espacio para todos */
+    min-width: calc(800px + ((var(--total-items) - 5) * 160px));
+  }
+
+  /* El carrito y los puntos necesitan ajustarse al nuevo sistema */
+  .timeline-point, .timeline-car {
+    position: absolute;
+  }
+
+
+  .timeline-car {
+    width: 40px;
+    height: 25px;
+    top: -20px;
+  }
+  .timeline-point {
+    width: 12px;
+    height: 12px;
+  }
+  .timeline-labels {
+    top: 80px; /* Bajé etiquetas */
+
+    position: absolute;
+    width: max-content;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-container {
+    height: 120px;
+  }
+  .timeline {
+    width: 90%;
+    height: 6px;
+    margin: 40px auto;
+  }
+  .timeline-car {
+    width: 35px;
+    height: 20px;
+  }
+  .timeline-point {
+    width: 10px;
+    height: 10px;
+  }
+  .timeline-labels {
+    top: 70px; /* Bajé etiquetas */
+  }
+}
+
+
