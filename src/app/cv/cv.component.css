@@ -745,8 +745,8 @@ h2 {
   top: 15%; /* Centra verticalmente el carrito respecto a la línea */
   transform: translateY(-50%); /* Asegura el centrado perfecto */
   width: 50px;
-  height: 90px;
-  background-image: url('/assets/carrito.gif');
+  height: 125px;
+  /*background-image: url('/assets/carrito.gif'); */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -762,7 +762,6 @@ h2 {
   width: 100%;
   right: -20px;
   margin-top: -1%;
-
   width: max-content;
   min-width: 100%;
 }
@@ -816,7 +815,7 @@ h2 {
 
   .timeline-car {
     width: 40px;
-    height: 25px;
+    height: 125px;
     top: -20px;
   }
   .timeline-point {
@@ -844,7 +843,7 @@ h2 {
   }
   .timeline-car {
     width: 35px;
-    height: 20px;
+    height: 105px;
   }
   .timeline-point {
     width: 10px;
